@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VIJAY BHAT — ORIGIN ARC · 覚醒</title>
+<meta name="description" content="Vijay Bhat's journey as an anime: from Information Science student to IEEE author to AI Product Engineer. Episodes, powers and hidden mysteries." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+:root{--ink:#07040a;--ink2:#120810;--crim:#ff1f4b;--scar:#d10036;--mag:#ff2fa0;--gold:#ffcf4a;--paper:#f4efe4;--vio:#7a0dff;--sys:#45d4ff;--text:#f6f1ea;--mute:#b6a9b3;
+  --jp:"Dela Gothic One",sans-serif;--sfx:"Bangers",cursive;--body:"Zen Kaku Gothic New",sans-serif;--mono:"JetBrains Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--ink);scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font-family:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+@media (pointer:fine){body,a,button{cursor:none}}
+a{color:inherit;text-decoration:none} button{font:inherit;color:inherit;background:none;border:0}
+::selection{background:var(--crim);color:#fff}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:90}
+#flash{position:fixed;inset:0;z-index:95;pointer-events:none;opacity:0;background:#fff}
+#flash.ink{background:#000 repeating-conic-gradient(from 0deg at 50% 50%,#000 0 3deg,#fff 3deg 3.4deg)}
+#sfxLayer{position:fixed;inset:0;z-index:92;pointer-events:none;overflow:hidden}
+.pop{position:absolute;font-family:var(--jp);line-height:1;white-space:nowrap;transform:translate(-50%,-50%) rotate(var(--r)) scale(0);animation:pop var(--d,900ms) cubic-bezier(.2,1.6,.4,1) forwards;-webkit-text-stroke:var(--sw,3px) var(--st,#000);paint-order:stroke fill;text-shadow:0 0 24px var(--gl,rgba(255,31,75,.8))}
+@keyframes pop{0%{transform:translate(-50%,-50%) rotate(var(--r)) scale(0)}18%{transform:translate(-50%,-50%) rotate(var(--r)) scale(1.25)}30%{transform:translate(-50%,-50%) rotate(var(--r)) scale(1)}75%{opacity:1}100%{opacity:0;transform:translate(-50%,-80%) rotate(var(--r)) scale(1.05)}}
+
+/* ---------- HUD ---------- */
+.hud{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;pointer-events:none}
+.hud>*{pointer-events:auto}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--jp);font-size:15px;letter-spacing:.04em;background:rgba(7,4,10,.78);backdrop-filter:blur(8px);padding:5px 14px 5px 5px;clip-path:polygon(0 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+.brand .hx{width:34px;height:34px;display:grid;place-items:center;background:var(--crim);color:#fff;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);font-size:12px}
+.brand i{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--crim);letter-spacing:.2em}
+.hud-r{display:flex;gap:8px;align-items:center}
+.hud-r button,.hud-r a{font-family:var(--mono);font-size:11px;letter-spacing:.06em;padding:8px 12px;border:1px solid rgba(255,255,255,.18);background:rgba(7,4,10,.7);backdrop-filter:blur(8px);clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);transition:all .15s}
+.hud-r button:hover,.hud-r a:hover{background:var(--crim);border-color:var(--crim)}
+.myst b{color:var(--gold)}
+.myst.pulse{animation:mpulse .8s 3}
+@keyframes mpulse{50%{background:var(--gold);color:#000}}
+
+/* ---------- gate ---------- */
+#gate{position:fixed;inset:0;z-index:85;background:radial-gradient(circle at 50% 50%,#2a0612,#07040a 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+#gate.break{animation:gbreak .8s forwards}
+@keyframes gbreak{0%{transform:scale(1);filter:none}40%{transform:scale(1.08);filter:brightness(3)}100%{transform:scale(1.6);opacity:0;filter:blur(20px) brightness(4)}}
+.g-sig{width:min(62vmin,520px);aspect-ratio:1;position:absolute;opacity:.9}
+.g-sig .sg *{stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 2.6s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.g-k{position:relative;font-family:var(--jp);font-size:clamp(70px,13vmin,150px);color:#fff;text-shadow:0 0 40px var(--crim),0 0 90px var(--crim);animation:flick 3s infinite}
+@keyframes flick{0%,100%{opacity:1}47%{opacity:1}48%{opacity:.4}49%{opacity:1}72%{opacity:.85}}
+.g-t{position:relative;font-family:var(--mono);letter-spacing:.4em;font-size:12px;color:var(--mute)}
+.g-b{position:relative;display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;justify-content:center}
+.btn-awaken{font-family:var(--jp);font-size:20px;letter-spacing:.06em;color:#fff;padding:16px 30px;background:var(--crim);clip-path:polygon(14px 0,100% 0,calc(100% - 14px) 100%,0 100%);box-shadow:0 0 40px var(--crim);transition:transform .15s}
+.btn-awaken:hover{transform:scale(1.06)}
+.btn-awaken small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.15em;opacity:.8}
+.btn-q{font-family:var(--mono);font-size:12px;color:var(--mute);padding:16px 18px;border:1px solid rgba(255,255,255,.2);clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+.btn-q:hover{color:#fff}
+.g-h{position:relative;font-size:12px;color:#6d5a66;margin-top:16px;font-family:var(--mono)}
+
+/* ---------- shared ---------- */
+section{position:relative;overflow:hidden}
+.halftone{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,var(--ht,rgba(255,31,75,.22)) 1.1px,transparent 1.6px);background-size:9px 9px;-webkit-mask-image:var(--mk,linear-gradient(180deg,transparent,#000 60%));mask-image:var(--mk,linear-gradient(180deg,transparent,#000 60%))}
+.speed{position:absolute;inset:-50%;pointer-events:none;background:repeating-conic-gradient(from 0deg at 50% 50%,transparent 0deg 2.2deg,var(--sl,rgba(255,255,255,.08)) 2.2deg 2.7deg);-webkit-mask-image:radial-gradient(circle,transparent 18%,#000 60%);mask-image:radial-gradient(circle,transparent 18%,#000 60%);animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.slam{opacity:0;transform:scale(1.6) rotate(-4deg);filter:blur(8px)}
+.slam.in{animation:slam .55s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes slam{to{opacity:1;transform:none;filter:none}}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--crim)}
+.sec-h{position:relative;z-index:2;display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap}
+.sec-h h2{font-family:var(--jp);font-size:clamp(52px,8vw,120px);line-height:.9;letter-spacing:-.01em}
+.sec-h .jp{font-family:var(--jp);font-size:clamp(28px,4vw,54px);color:var(--crim)}
+.sec-h p{font-size:14px;color:var(--mute);font-family:var(--mono);margin-left:auto;max-width:36ch;text-align:right}
+
+/* ---------- 1 opening ---------- */
+#op{min-height:100vh;display:flex;align-items:center;padding:110px 6vw 80px;background:radial-gradient(1100px 700px at 70% 45%,#3a0718,transparent 70%),radial-gradient(700px 500px at 15% 90%,#1d0630,transparent 70%),var(--ink)}
+#op .speed{--sl:rgba(255,31,75,.07)}
+.op-sig{position:absolute;right:-6vw;top:50%;width:min(92vmin,900px);aspect-ratio:1;transform:translateY(-50%);opacity:.55}
+.op-vert{position:absolute;right:4vw;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--jp);font-size:clamp(46px,7vw,96px);color:transparent;-webkit-text-stroke:1.5px rgba(255,31,75,.7);letter-spacing:.1em;z-index:1}
+.op-main{position:relative;z-index:3;max-width:900px}
+.op-ep{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--gold)}
+.name{position:relative;font-family:var(--jp);font-size:clamp(64px,11.5vw,184px);line-height:.88;letter-spacing:-.01em;margin:18px 0 10px;color:#fff;z-index:1}
+.name::before,.name::after{content:attr(data-t);position:absolute;inset:0;z-index:-1}
+.name::before{color:var(--crim);transform:translate(-5px,3px);animation:gl1 2.8s infinite steps(1)}
+.name::after{color:#22e5ff;transform:translate(5px,-3px);opacity:.75;animation:gl2 3.4s infinite steps(1)}
+@keyframes gl1{0%,100%{clip-path:inset(0 0 0 0)}20%{clip-path:inset(20% 0 55% 0);transform:translate(-12px,3px)}22%{clip-path:inset(0 0 0 0);transform:translate(-5px,3px)}63%{clip-path:inset(62% 0 8% 0);transform:translate(-9px,1px)}65%{clip-path:inset(0 0 0 0)}}
+@keyframes gl2{0%,100%{clip-path:inset(0 0 0 0)}41%{clip-path:inset(40% 0 30% 0);transform:translate(12px,-2px)}43%{clip-path:inset(0 0 0 0);transform:translate(5px,-3px)}}
+.op-banner{display:inline-block;transform:rotate(-3deg);background:#fff;color:#000;font-family:var(--jp);font-size:clamp(20px,2.6vw,36px);padding:8px 22px;margin:6px 0 24px;box-shadow:8px 8px 0 var(--crim)}
+.op-line{font-family:var(--jp);font-size:clamp(24px,2.7vw,42px);line-height:1.18;max-width:21ch;margin:0 0 16px;text-shadow:3px 3px 0 #000}
+.op-line em{font-style:normal;text-shadow:none;color:#000;background:var(--gold);padding:0 .16em;display:inline-block;transform:rotate(-1.5deg);box-shadow:4px 4px 0 var(--crim)}
+.op-line em+em{background:var(--crim);color:#fff;box-shadow:4px 4px 0 #000;transform:rotate(1.5deg)}
+.op-tag{font-size:clamp(16px,1.5vw,20px);line-height:1.6;max-width:44ch;color:#e9dfe4;font-weight:700}
+.op-tag em{font-style:normal;color:var(--gold)}
+.op-cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.btn-red{font-family:var(--jp);font-size:16px;padding:14px 24px;background:var(--crim);color:#fff;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);transition:all .15s;box-shadow:0 0 30px rgba(255,31,75,.5)}
+.btn-red:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 50px var(--crim)}
+.btn-ghost{font-family:var(--jp);font-size:16px;padding:14px 24px;border:2px solid #fff;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.btn-ghost:hover{background:#fff;color:#000}
+.op-hint{margin-top:26px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:#8d7383}
+.op-hint b{color:var(--crim);font-weight:400}
+body:not(.awake) .op-main>*{opacity:0}
+body.awake .op-main>*{animation:opin .7s cubic-bezier(.2,1.3,.4,1) backwards}
+body.awake .op-main>*:nth-child(2){animation-delay:.12s} body.awake .op-main>*:nth-child(3){animation-delay:.3s} body.awake .op-main>*:nth-child(4){animation-delay:.42s} body.awake .op-main>*:nth-child(5){animation-delay:.54s} body.awake .op-main>*:nth-child(6){animation-delay:.66s} body.awake .op-main>*:nth-child(7){animation-delay:.78s}
+@keyframes opin{from{opacity:0;transform:translateX(-60px) skewX(-12deg);filter:blur(6px)}}
+
+/* sigil svg */
+.sg{width:100%;height:100%;overflow:visible}
+.sg circle,.sg polygon,.sg line{fill:none;stroke:var(--sc,#ff1f4b);stroke-width:.8}
+.sg .thick{stroke-width:2}
+.sg text{fill:var(--sc,#ff1f4b);font-family:var(--jp);font-size:7.5px;letter-spacing:1.5px}
+.sg .r1{animation:spin 40s linear infinite;transform-origin:0 0}
+.sg .r2{animation:spin 26s linear infinite reverse;transform-origin:0 0}
+.sg .r3{animation:spin 14s linear infinite;transform-origin:0 0}
+
+/* ---------- 2 status ---------- */
+#status{padding:120px 6vw;background:linear-gradient(180deg,var(--ink),#0a0718)}
+.sys{position:relative;z-index:2;max-width:1100px;margin:40px auto 0;border:1.5px solid var(--sys);background:rgba(8,20,36,.72);box-shadow:0 0 0 4px rgba(69,212,255,.08),0 0 60px rgba(69,212,255,.18),inset 0 0 40px rgba(69,212,255,.08);clip-path:polygon(18px 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%,0 18px);font-family:var(--mono);color:#cfefff}
+.sys::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(69,212,255,.05) 0 1px,transparent 1px 4px);pointer-events:none}
+.sys-h{display:flex;justify-content:space-between;padding:14px 22px;border-bottom:1px solid rgba(69,212,255,.35);font-size:14px;letter-spacing:.3em;color:var(--sys)}
+.sys-h span{font-size:10px;letter-spacing:.2em;opacity:.7}
+.sys-g{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.sys-id{padding:22px;border-right:1px solid rgba(69,212,255,.25);display:flex;flex-direction:column;gap:14px}
+.row{display:grid;grid-template-columns:96px 1fr;gap:12px;font-size:13px;line-height:1.5}
+.row b{color:var(--sys);font-weight:400;letter-spacing:.12em;font-size:11px;padding-top:2px}
+.row span{color:#fff;font-family:var(--body);font-size:15px;font-weight:700}
+.titles{display:flex;flex-wrap:wrap;gap:6px}
+.titles i{font-style:normal;font-family:var(--body);font-weight:700;font-size:13px;color:var(--gold);border:1px solid rgba(255,207,74,.5);padding:2px 8px}
+.sys-st{padding:22px;display:flex;flex-direction:column;gap:14px}
+.st{display:grid;grid-template-columns:150px 1fr 70px;gap:12px;align-items:center;font-size:11.5px;letter-spacing:.08em}
+.st .pips{display:flex;gap:4px;height:12px}
+.st .pips i{flex:1;max-width:40px;background:rgba(69,212,255,.12);border:1px solid rgba(69,212,255,.35);transform:skewX(-20deg);transition:background .3s}
+.st .pips i.on{background:var(--sys);box-shadow:0 0 10px var(--sys)}
+.st .bar{height:12px;background:rgba(69,212,255,.1);border:1px solid rgba(69,212,255,.35);transform:skewX(-20deg);overflow:hidden}
+.st .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--sys),#fff);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.st .bar.inf i{background:repeating-linear-gradient(90deg,var(--sys) 0 10px,#fff 10px 12px);animation:infbar 1s linear infinite}
+@keyframes infbar{to{background-position:24px 0}}
+.st .v{text-align:right;color:#fff;font-size:15px;font-family:var(--jp)}
+.sys-f{padding:14px 22px;border-top:1px solid rgba(69,212,255,.35);font-size:12.5px;line-height:1.6;color:#bfe9ff}
+.sys-f b{color:var(--gold);font-weight:400}
+
+/* ---------- 3 episodes (manga page) ---------- */
+#episodes{background:var(--paper);color:#0b0b0b;padding:110px 5vw 120px}
+#episodes .halftone{--ht:rgba(0,0,0,.13);--mk:linear-gradient(180deg,#000,transparent 30%,transparent 70%,#000)}
+#episodes .sec-h h2{color:#0b0b0b}
+#episodes .sec-h p{color:#55505a}
+#episodes .kick{color:var(--scar)}
+.page{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,250px);grid-template-areas:"e1 e1 e2 e3" "e4 e4 e4 e3" "e5 e6 e6 e7" "e5 e8 e8 e8";gap:14px;margin-top:44px}
+.pnl{position:relative;overflow:hidden;background:#fff;border:5px solid #0b0b0b;text-align:left;color:#0b0b0b;transition:transform .25s cubic-bezier(.2,1.4,.4,1),box-shadow .25s;box-shadow:6px 6px 0 #0b0b0b}
+.pnl:nth-child(odd){clip-path:polygon(0 2%,100% 0,99% 100%,1% 98%)}
+.pnl:nth-child(even){clip-path:polygon(1% 0,99% 3%,100% 97%,0 100%)}
+.pnl:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:12px 12px 0 var(--c)}
+.pnl .pspeed{position:absolute;inset:-60%;background:repeating-conic-gradient(from 0deg at 50% 50%,transparent 0deg 2deg,rgba(0,0,0,.14) 2deg 2.5deg);-webkit-mask-image:radial-gradient(circle,transparent 15%,#000 55%);mask-image:radial-gradient(circle,transparent 15%,#000 55%);opacity:0;transition:opacity .25s}
+.pnl:hover .pspeed{opacity:1;animation:spin 8s linear infinite}
+.pnl .ph{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.2) 1px,transparent 1.5px);background-size:7px 7px;-webkit-mask-image:linear-gradient(135deg,transparent 30%,#000);mask-image:linear-gradient(135deg,transparent 30%,#000)}
+.pnl .pk{position:absolute;right:-2%;bottom:-14%;font-family:var(--jp);font-size:calc(clamp(120px,13vw,230px) * var(--ks,1));line-height:1;color:#0b0b0b;opacity:.92;transition:transform .3s}
+.pnl:hover .pk{transform:scale(1.08) rotate(-4deg);color:var(--scar)}
+.pnl .pn{position:absolute;left:12px;top:12px;font-family:var(--jp);font-size:15px;background:#0b0b0b;color:#fff;padding:5px 10px;z-index:2}
+.pnl .pic{position:absolute;left:16px;top:56px;width:64px;height:64px;z-index:2;color:var(--scar)}
+.pnl .cap{position:absolute;left:12px;bottom:12px;z-index:2;background:#fff;border:3px solid #0b0b0b;padding:8px 12px;max-width:70%}
+.pnl .cap b{display:block;font-family:var(--jp);font-size:clamp(16px,1.5vw,22px);line-height:1.1}
+.pnl .cap small{display:block;font-size:11.5px;font-weight:700;color:#55505a;margin-top:4px;line-height:1.35}
+.pnl .go{position:absolute;right:12px;top:12px;z-index:2;font-family:var(--sfx);font-size:20px;letter-spacing:.05em;color:#fff;background:var(--scar);padding:2px 10px;transform:rotate(4deg);opacity:0;transition:opacity .2s}
+.pnl:hover .go{opacity:1}
+.pnl.big .cap{max-width:56%}
+.pnl.seen::after{content:"既読";position:absolute;right:14px;bottom:14px;z-index:3;font-family:var(--jp);font-size:12px;color:#fff;background:#0b0b0b;padding:3px 7px;transform:rotate(-6deg)}
+
+/* ---------- scene (enter a panel) ---------- */
+#scene{position:fixed;inset:0;z-index:84;background:#07040a;display:none;overflow:hidden}
+#scene.open{display:block}
+#sceneCv{position:absolute;inset:0;width:100%;height:100%}
+.sc-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:18px 24px;z-index:3}
+.sc-ep{font-family:var(--jp);font-size:16px;background:#fff;color:#000;padding:6px 12px;transform:rotate(-2deg)}
+#scClose{font-family:var(--mono);font-size:12px;padding:9px 14px;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);letter-spacing:.08em}
+#scClose:hover{background:var(--crim)}
+.sc-left{position:absolute;left:5vw;top:76px;bottom:3vh;width:min(46vw,660px);z-index:3;display:flex;flex-direction:column;gap:14px}
+.sc-title{position:relative}
+.sc-k{font-family:var(--jp);font-size:clamp(54px,6.2vw,100px);line-height:1;color:var(--sc,#ff1f4b);text-shadow:0 0 40px var(--sc,#ff1f4b)}
+.sc-title h2{font-family:var(--jp);font-size:clamp(34px,3.8vw,62px);line-height:1;margin-top:6px;text-shadow:4px 4px 0 #000}
+.sc-meta{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:var(--mute);margin-top:10px;line-height:1.6}
+.sc-title.in>*{animation:opin .6s cubic-bezier(.2,1.3,.4,1) backwards}
+.sc-title.in>*:nth-child(2){animation-delay:.1s} .sc-title.in>*:nth-child(3){animation-delay:.2s}
+.strip{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:9px;background:var(--paper);box-shadow:0 0 0 3px #000,10px 10px 0 var(--sc,#ff1f4b);min-height:0;overflow:auto;scrollbar-width:none}
+.strip.odd .mp:first-child{grid-column:1/-1}
+.mp{position:relative;overflow:hidden;border:3px solid #000;padding:28px 14px 14px;min-height:118px;display:flex;align-items:center;opacity:0}
+.mp:nth-child(odd){clip-path:polygon(0 1.5%,100% 0,99.5% 100%,.5% 98.5%)}
+.mp:nth-child(even){clip-path:polygon(.5% 0,99.5% 2%,100% 98%,0 100%)}
+.sc-left.in .mp{animation:pin .45s cubic-bezier(.2,1.5,.4,1) forwards}
+.sc-left.in .mp:nth-child(2){animation-delay:.12s} .sc-left.in .mp:nth-child(3){animation-delay:.24s} .sc-left.in .mp:nth-child(4){animation-delay:.36s}
+@keyframes pin{from{opacity:0;transform:scale(.8) rotate(-2deg);filter:brightness(2.6)}to{opacity:1;transform:none;filter:none}}
+.mp::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,0,0,.3) 1.1px,transparent 1.6px);background-size:7px 7px;pointer-events:none}
+.mp>i{position:absolute;left:8px;top:6px;font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;background:#000;color:#fff;padding:3px 7px;z-index:1}
+.mp.nar{background:radial-gradient(circle at 88% 12%,var(--sc),#1a0a14 82%)}
+.mp.nar p{position:relative;background:#fff;color:#0b0b0b;border:2.5px solid #000;box-shadow:5px 5px 0 #000;padding:10px 12px;font-weight:700;font-size:clamp(13px,1vw,15px);line-height:1.5}
+.mp.say{background:#fff;justify-content:center;padding:14px 12px 36px}
+.mp.say::before{background-image:radial-gradient(circle,color-mix(in srgb,var(--sc) 65%,transparent) 1.3px,transparent 1.9px);background-size:8px 8px}
+.mp.say::after{content:"";position:absolute;inset:-60%;background:repeating-conic-gradient(from 0deg,transparent 0 4deg,rgba(0,0,0,.07) 4deg 5deg);pointer-events:none}
+.bub{position:relative;z-index:1;background:#fff;color:#000;border:3px solid #000;border-radius:50%/44%;padding:16px 22px;font-family:var(--jp);font-size:clamp(14px,1.15vw,18px);line-height:1.3;text-align:center}
+.bub::after{content:"";position:absolute;left:20%;bottom:-22px;width:26px;height:24px;background:#000;clip-path:polygon(0 0,100% 0,8% 100%)}
+.bub::before{content:"";position:absolute;left:calc(20% + 5px);bottom:-14px;width:17px;height:16px;background:#fff;clip-path:polygon(0 0,100% 0,8% 100%);z-index:1}
+.mp .who{position:absolute;left:8px;bottom:6px;z-index:2;font-family:var(--jp);font-size:12px;background:var(--sc,#ff1f4b);color:#fff;text-shadow:1px 1px 0 #000;padding:3px 9px;transform:skewX(-8deg)}
+.mp.party{background:radial-gradient(circle at 15% 85%,var(--sc),#0b1420 82%)}
+.mp.party p{position:relative;display:flex;flex-wrap:wrap;gap:6px}
+.mp.party span{background:#fff;color:#000;border:2px solid #000;font-weight:900;font-size:12.5px;padding:3px 8px;box-shadow:3px 3px 0 #000}
+.mp.party span.me{background:var(--gold)}
+.sc-acts{display:flex;gap:8px;flex-wrap:wrap;opacity:0}
+.sc-left.in .sc-acts{animation:pin .4s .45s cubic-bezier(.2,1.5,.4,1) forwards}
+.sa{font-family:var(--jp);font-size:14px;padding:11px 16px;background:var(--sc,#ff1f4b);color:#fff;text-shadow:2px 2px 0 #000;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);transition:transform .15s}
+.sa:hover{transform:translateY(-2px) scale(1.04)}
+.sa.alt{background:#fff;color:#000;text-shadow:none}
+
+/* ---------- 4 powers ---------- */
+#powers{padding:120px 6vw 130px;background:radial-gradient(1000px 700px at 50% 30%,#2a0614,transparent 70%),var(--ink)}
+#powers .speed{--sl:rgba(255,31,75,.05)}
+.cards{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px;perspective:1100px}
+.card{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;position:relative;height:330px;transform-style:preserve-3d;transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .12s}
+.card-in{position:absolute;inset:0;padding:22px 22px 18px;background:linear-gradient(160deg,#1a0a14,#0b060c 60%);border:1.5px solid color-mix(in srgb,var(--c) 70%,transparent);clip-path:polygon(0 14px,14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px));overflow:hidden;display:flex;flex-direction:column}
+.card .foil{position:absolute;inset:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.28),transparent 45%),linear-gradient(115deg,transparent 30%,color-mix(in srgb,var(--c) 35%,transparent) 45%,rgba(122,13,255,.25) 55%,transparent 70%);background-size:100% 100%,250% 250%;background-position:0 0,var(--mx) var(--my);mix-blend-mode:screen;opacity:.0;transition:opacity .2s;pointer-events:none}
+.card:hover .foil{opacity:1}
+.card .ck{position:absolute;right:-10px;top:-18px;font-family:var(--jp);font-size:calc(150px * var(--ks,1));line-height:1;color:var(--c);opacity:.16;transform:translateZ(30px)}
+.card .cno{font-family:var(--mono);font-size:10.5px;letter-spacing:.25em;color:var(--c)}
+.card h3{font-family:var(--jp);font-size:28px;line-height:1.05;margin:auto 0 8px;transform:translateZ(40px)}
+.card .cel{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--c);margin-bottom:10px}
+.card p{font-size:14px;line-height:1.6;color:#d9ccd3;font-weight:700}
+.card .csrc{margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.18);font-family:var(--mono);font-size:10.5px;color:#9d8794;display:flex;justify-content:space-between;gap:8px}
+.card .csrc b{color:#fff;font-weight:400}
+.card .cast{position:absolute;right:16px;top:16px;font-family:var(--sfx);font-size:16px;letter-spacing:.06em;color:#000;background:var(--c);padding:2px 9px;transform:rotate(3deg) translateZ(50px);opacity:0;transition:opacity .2s}
+.card:hover .cast{opacity:1}
+.card.casting .card-in{animation:castfx .6s}
+@keyframes castfx{0%{filter:brightness(3)}100%{filter:none}}
+.castlog{position:relative;z-index:2;margin-top:24px;font-family:var(--mono);font-size:12px;color:#9d8794;text-align:center}
+.castlog b{color:var(--gold);font-weight:400}
+
+/* ---------- 5 finale ---------- */
+#finale{min-height:100vh;padding:130px 6vw 60px;background:radial-gradient(900px 600px at 50% 55%,#3a0718,transparent 70%),#050307;display:flex;flex-direction:column;align-items:center;text-align:center}
+.fin-k{font-family:var(--jp);font-size:clamp(30px,4vw,52px);color:var(--gold);letter-spacing:.1em}
+.fin-t{font-family:var(--jp);font-size:clamp(56px,10vw,160px);line-height:.92;margin:14px 0 10px}
+.fin-t span{color:var(--crim);text-shadow:0 0 40px var(--crim)}
+.fin-p{font-size:17px;color:#d9ccd3;font-weight:700;max-width:52ch;line-height:1.6}
+.summon{position:relative;margin-top:48px;width:220px;height:220px;border-radius:50%;display:grid;place-items:center;user-select:none;touch-action:none}
+.summon .sg{position:absolute;inset:0;--sc:#ff1f4b;opacity:.75}
+.summon svg.ring{position:absolute;inset:-10px;width:240px;height:240px;transform:rotate(-90deg)}
+.summon svg.ring circle{fill:none;stroke-width:5}
+.summon .lbl{position:relative;font-family:var(--jp);font-size:22px;line-height:1.15;text-shadow:0 0 20px var(--crim)}
+.summon .lbl small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--mute);margin-top:6px}
+.summon.done{pointer-events:none}
+.contact{display:grid;grid-template-columns:repeat(3,minmax(0,220px));gap:12px;margin-top:40px;opacity:0;transform:translateY(30px) scale(.95);transition:all .7s cubic-bezier(.2,1.4,.4,1);pointer-events:none}
+.contact.open{opacity:1;transform:none;pointer-events:auto}
+.contact a{display:flex;flex-direction:column;gap:6px;text-align:left;padding:16px 18px;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.03);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);transition:all .15s}
+.contact a:hover{border-color:var(--crim);background:rgba(255,31,75,.12);transform:translateY(-3px)}
+.contact a b{font-family:var(--jp);font-size:17px}
+.contact a span{font-family:var(--mono);font-size:11px;color:var(--mute);word-break:break-all}
+.plain{margin-top:24px;font-family:var(--mono);font-size:12px;color:#7a6472}
+.plain a{color:#d9ccd3;border-bottom:1px solid #7a6472}
+.tsuzuku{align-self:flex-end;margin-top:auto;padding-top:60px;font-family:var(--jp);font-size:clamp(34px,5vw,64px);color:#fff;transform:rotate(-4deg);text-shadow:4px 4px 0 var(--crim)}
+.tsuzuku small{font-family:var(--sfx);font-size:22px;letter-spacing:.08em;color:var(--gold);display:block;text-align:right}
+footer{width:100%;margin-top:40px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:#6d5a66}
+
+/* ---------- mysteries + familiar ---------- */
+.sigl{position:absolute;z-index:5;width:46px;height:46px;opacity:.05;transition:opacity .2s,transform .2s;color:var(--gold)}
+.sigl svg{width:100%;height:100%}
+.sigl.found{display:none}
+#familiar{position:fixed;right:28px;bottom:-200px;z-index:81;display:flex;align-items:flex-end;gap:10px;transition:bottom .6s cubic-bezier(.2,1.4,.4,1)}
+#familiar.on{bottom:18px}
+#familiar .fb{max-width:280px;font-family:var(--body);font-weight:700;font-size:14px;line-height:1.45;background:#fff;color:#000;padding:12px 14px;border:3px solid #000;box-shadow:5px 5px 0 var(--crim);position:relative}
+#familiar .fb::after{content:"";position:absolute;right:-12px;bottom:18px;border:8px solid transparent;border-left-color:#000}
+#familiar .fb b{display:block;font-family:var(--jp);font-size:11px;color:var(--scar);margin-bottom:3px}
+#familiar svg{width:84px;height:84px;filter:drop-shadow(0 0 14px rgba(255,31,75,.6));animation:bob 1.6s infinite}
+#familiar.spin svg{animation:fspin .6s}
+@keyframes fspin{to{transform:rotate(360deg)}}
+#toast{position:fixed;left:50%;top:76px;transform:translate(-50%,-20px);z-index:82;font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;background:var(--gold);color:#000;padding:10px 16px;opacity:0;transition:all .3s;pointer-events:none;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+body.overdrive #world{animation:od .12s infinite}
+@keyframes od{0%{filter:hue-rotate(0) saturate(2)}50%{filter:hue-rotate(-30deg) saturate(3) contrast(1.3);transform:translate(2px,-1px)}100%{filter:hue-rotate(0) saturate(2)}}
+
+@media (max-width:900px){
+  .op-vert{display:none}
+  .sys-g{grid-template-columns:1fr}.sys-id{border-right:0;border-bottom:1px solid rgba(69,212,255,.25)}
+  .st{grid-template-columns:110px 1fr 54px}
+  .page{grid-template-columns:1fr 1fr;grid-template-rows:none;grid-auto-rows:220px;grid-template-areas:"e1 e1" "e2 e3" "e4 e4" "e5 e6" "e7 e7" "e8 e8"}
+  .cards{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr}
+  
+  .sec-h p{text-align:left;margin-left:0}
+  .hud .normal{display:none}
+}
+@media (max-width:760px){
+  .hud{padding:10px 12px}
+  .brand i{display:none}
+  .hud-r button,.hud-r a{padding:7px 9px;font-size:10.5px}
+  #op{padding:96px 18px 70px;align-items:flex-end}
+  .op-sig{right:-40vw;top:34%;width:120vw;opacity:.35}
+  .name{font-size:clamp(56px,17vw,90px);margin:12px 0 8px}
+  .op-banner{font-size:18px;padding:6px 14px;margin:4px 0 18px}
+  .op-line{font-size:25px}
+  .op-tag{font-size:15px}
+  .op-cta a{font-size:14px;padding:12px 16px}
+  .op-hint{font-size:10px;letter-spacing:.12em;line-height:1.6}
+  #status,#powers{padding:90px 16px}
+  #episodes{padding:90px 14px 100px}
+  .sec-h{gap:8px}
+  .sec-h h2{font-size:clamp(40px,11.5vw,64px)}
+  .sec-h .jp{font-size:24px}
+  .sec-h p{font-size:12px}
+  .sys{margin-top:26px}
+  .sys-id,.sys-st{padding:16px}
+  .row{grid-template-columns:70px 1fr;gap:8px}
+  .row span{font-size:13.5px}
+  .st{grid-template-columns:104px 1fr 44px;gap:8px;font-size:10px}
+  .st .v{font-size:13px}
+  .page{gap:10px;margin-top:28px;grid-auto-rows:190px}
+  .pnl .pic{display:none}
+  .pnl .pk{font-size:calc(96px * var(--ks,1));right:8px;bottom:auto;top:44px;opacity:1}
+  .pnl.big .pk{font-size:calc(130px * var(--ks,1))}
+  .pnl .cap b{font-size:16px}
+  .pnl .cap{max-width:86%;padding:6px 9px}
+  .pnl .cap small{font-size:10.5px}
+  .pnl .go{opacity:1;font-size:15px}
+  .card{height:auto;min-height:290px}
+  .card-in{position:relative;min-height:290px}
+  .card h3{font-size:24px;margin-top:70px}
+  #finale{padding:100px 18px 40px}
+  .summon{width:190px;height:190px} .summon svg.ring{width:210px;height:210px}
+  #familiar{right:10px}
+  #familiar .fb{max-width:210px;font-size:12.5px;padding:9px 11px}
+  #familiar svg{width:58px;height:58px}
+  /* episode page on phones: art on top, manga panels below, one scroll */
+  #scene{overflow-y:auto;overscroll-behavior:contain}
+  #sceneCv{position:fixed;inset:auto;top:0;left:-58.8%;width:160%;height:58vh}
+  .sc-top{position:fixed;padding:12px;background:linear-gradient(180deg,rgba(7,4,10,.9),transparent)}
+  .sc-left{position:relative;left:auto;top:auto;bottom:auto;width:auto;padding:40vh 12px 34px;background:linear-gradient(180deg,transparent 0,transparent 34vh,rgba(7,4,10,.94) 44vh,#07040a 50vh)}
+  .sc-k{font-size:64px}
+  .sc-title h2{font-size:38px}
+  .strip{grid-template-columns:1fr;overflow:visible}
+  .strip.odd .mp:first-child{grid-column:auto}
+  .mp{min-height:0}
+  .mp.nar p{font-size:14px}
+  .bub{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.mp,.sc-acts{opacity:1}.slam{opacity:1;transform:none;filter:none}body:not(.awake) .op-main>*{opacity:1}}
+</style>
+</head>
+<body class="locked">
+<canvas id="fx"></canvas>
+<div id="flash"></div>
+<div id="sfxLayer"></div>
+
+<header class="hud">
+  <a class="brand" href="#op"><span class="hx">VB</span><b>VIJAY</b><i>ORIGIN ARC</i></a>
+  <div class="hud-r">
+    <button class="myst" id="mystBtn" title="Hidden mysteries found">謎 <b id="mystN">0</b>/5</button>
+    <button id="sndBtn">SFX · OFF</button>
+    <a class="normal" href="index.html">通常モード · normal ↩</a>
+  </div>
+</header>
+
+<div id="gate">
+  <div class="g-sig" id="gateSig"></div>
+  <div class="g-k">覚醒</div>
+  <div class="g-t">VIJAY BHAT · ORIGIN ARC</div>
+  <div class="g-b"><button class="btn-awaken" id="awaken">AWAKEN ⚡<small>with sound</small></button><button class="btn-q" id="awakenQuiet">awaken silently</button></div>
+  <div class="g-h">an AI engineer's origin story · 全8話</div>
+</div>
+
+<main id="world">
+  <!-- 1 OPENING -->
+  <section id="op">
+    <div class="speed"></div><div class="halftone"></div>
+    <div class="op-sig" id="opSig"></div>
+    <div class="op-vert">ヴィジェイ・バット</div>
+    <div class="op-main">
+      <div class="op-ep">第1期 · ORIGIN ARC · 全8話</div>
+      <h1 class="name" data-t="VIJAY BHAT">VIJAY BHAT</h1>
+      <div class="op-banner">AI PRODUCT ENGINEER</div>
+      <p class="op-line">Solves real <em>business</em> problems with <em>AI</em>, and ships them as products.</p>
+      <p class="op-tag">He talked to GPT until he built <em>his own language model</em>. He published at <em>IEEE</em>. Now he summons <em>agents</em> for a living.</p>
+      <div class="op-cta"><a href="#episodes" class="btn-red">Watch the episodes ▶</a><a href="#powers" class="btn-ghost">See his powers</a></div>
+      <div class="op-hint"><b>HOLD</b> anywhere to charge a spell · <b>RELEASE</b> to cast · 5 謎 are hidden on this page</div>
+    </div>
+    <span class="sigl" data-m="0" style="left:3vw;bottom:6vh"></span>
+  </section>
+
+  <!-- 2 STATUS -->
+  <section id="status">
+    <div class="halftone" style="--ht:rgba(69,212,255,.12)"></div>
+    <div class="sec-h"><div><div class="kick">SYSTEM · ステータス</div><h2 class="slam" data-sfx="ステータス">STATUS</h2></div><p>The system window opens. Every value below is real.</p></div>
+    <div class="sys" id="sys">
+      <div class="sys-h">【 STATUS 】<span>SYSTEM WINDOW · v2026</span></div>
+      <div class="sys-g">
+        <div class="sys-id">
+          <div class="row"><b>NAME</b><span>Vijay Vishveshwar Bhat</span></div>
+          <div class="row"><b>CLASS</b><span>AI Product Engineer</span></div>
+          <div class="row"><b>GUILD</b><span>Colligence Research · Bengaluru</span></div>
+          <div class="row"><b>ORIGIN</b><span>Sai Vidya Institute of Technology · B.E. Information Science · July 2025 · CGPA 8.6/10</span></div>
+          <div class="row"><b>TITLES</b><div class="titles"><i>『IEEE Author』</i><i>『Agent Summoner』</i><i>『Ledger Oracle』</i><i>『Model Reforger』</i></div></div>
+        </div>
+        <div class="sys-st" id="stats">
+          <div class="st"><span>PAPERS · IEEE</span><span class="pips" data-n="1" data-max="3"></span><span class="v" data-to="1">0</span></div>
+          <div class="st"><span>PROJECTS</span><span class="pips" data-n="3" data-max="4"></span><span class="v" data-to="3">0</span></div>
+          <div class="st"><span>AGENT FRAMEWORKS</span><span class="pips" data-n="3" data-max="4"></span><span class="v" data-to="3">0</span></div>
+          <div class="st"><span>PROMOTIONS</span><span class="pips" data-n="2" data-max="3"></span><span class="v" data-to="2">0</span></div>
+          <div class="st"><span>CGPA</span><span class="bar" data-w="86"><i></i></span><span class="v">8.6</span></div>
+          <div class="st"><span>PAPER ACCURACY</span><span class="bar" data-w="95"><i></i></span><span class="v" data-to="95" data-suf="%">0</span></div>
+          <div class="st"><span>MODELS FINE-TUNED</span><span class="bar inf" data-w="100"><i></i></span><span class="v">MANY</span></div>
+        </div>
+      </div>
+      <div class="sys-f">UNIQUE SKILL ▸ <b>混沌エンジン · Chaos Engine</b>: turns messy business systems (ledgers, ERPs, documents) into tools an agent can safely use, then traces every step.</div>
+      <span class="sigl" data-m="1" style="right:14px;bottom:10px"></span>
+    </div>
+  </section>
+
+  <!-- 3 EPISODES -->
+  <section id="episodes">
+    <div class="halftone"></div>
+    <div class="sec-h"><div><div class="kick">物語 · THE STORY SO FAR</div><h2 class="slam" data-sfx="ドン!">EPISODES</h2></div><p>全8話 · click a panel to step inside it · every episode is real</p></div>
+    <div class="page" id="page"></div>
+    <span class="sigl" data-m="2" style="left:50%;bottom:44px;color:#0b0b0b"></span>
+  </section>
+
+  <!-- 4 POWERS -->
+  <section id="powers">
+    <div class="speed"></div><div class="halftone"></div>
+    <div class="sec-h"><div><div class="kick">能力 · ABILITIES</div><h2 class="slam" data-sfx="バン!">POWERS</h2></div><p>Each card is a skill he actually uses. Click a card to cast it.</p></div>
+    <div class="cards" id="cards"></div>
+    <div class="castlog" id="castlog">spells cast: <b>0</b> / 9</div>
+    <span class="sigl" data-m="3" style="right:3vw;top:40%"></span>
+  </section>
+
+  <!-- 5 FINALE -->
+  <section id="finale">
+    <div class="halftone" style="--mk:radial-gradient(circle,transparent 30%,#000)"></div>
+    <div class="fin-k slam" data-sfx="次回予告">次回予告 · NEXT EPISODE</div>
+    <h2 class="fin-t">YOUR<br/><span>TEAM?</span></h2>
+    <p class="fin-p">Agentic systems. RAG. Enterprise AI products. If that's the arc you're writing, hold the circle and summon him.</p>
+    <div class="summon" id="summon" role="button" tabindex="0" aria-label="Hold to summon Vijay">
+      <div id="sumSig" style="position:absolute;inset:0"></div>
+      <svg class="ring" viewBox="0 0 240 240"><circle cx="120" cy="120" r="112" stroke="rgba(255,255,255,.12)"/><circle id="sumRing" cx="120" cy="120" r="112" stroke="#ff1f4b" stroke-dasharray="704" stroke-dashoffset="704" stroke-linecap="round"/></svg>
+      <div class="lbl">召喚<br/>SUMMON<small>HOLD · 長押し</small></div>
+    </div>
+    <div class="contact" id="contact">
+      <a id="cMail" href="#"><b>✉ Email</b><span id="cMailT"></span></a>
+      <a id="cLi" href="#" target="_blank" rel="noopener"><b>LinkedIn ↗</b><span>connect</span></a>
+      <a id="cGh" href="#" target="_blank" rel="noopener"><b>GitHub ↗</b><span>code</span></a>
+      <a id="cPaper" href="#" target="_blank" rel="noopener"><b>IEEE paper ↗</b><span>ICCTDC 2025</span></a>
+      <a id="cCv" href="#" target="_blank" rel="noopener"><b>Résumé ↓</b><span>PDF</span></a>
+      <a href="index.html"><b>Normal mode ↩</b><span>the full portfolio</span></a>
+    </div>
+    <div class="plain">no time for spells? → <a id="plainMail" href="#"></a></div>
+    <div class="tsuzuku">つづく…<small>TO BE CONTINUED</small></div>
+    <span class="sigl" data-m="4" style="left:6vw;bottom:90px"></span>
+    <footer><span>© 2026 Vijay Bhat · an original anime-style tribute to his own journey</span><span>all characters and powers are original · facts are real</span></footer>
+  </section>
+</main>
+
+<!-- SCENE -->
+<div id="scene" aria-modal="true" role="dialog">
+  <canvas id="sceneCv"></canvas>
+  <div class="sc-top"><span class="sc-ep" id="scEp">第一話</span><button id="scClose">✕ 戻る · back</button></div>
+  <div class="sc-left" id="scLeft"><div class="sc-title" id="scTitle"></div><div class="strip" id="strip"></div><div class="sc-acts" id="scActs"></div></div>
+</div>
+
+<div id="familiar"><div class="fb" id="famText"><b>UNIT-VB</b>…</div>
+  <svg viewBox="-50 -60 100 110"><line x1="0" y1="-38" x2="0" y2="-50" stroke="#c9c3b5" stroke-width="3"/><circle cx="0" cy="-53" r="5" fill="#ffcf4a"/><rect x="-36" y="-38" width="72" height="54" rx="17" fill="#f3efe6"/><rect x="-29" y="-31" width="58" height="38" rx="12" fill="#0a0e16"/><rect x="-17" y="-20" width="10" height="15" rx="5" fill="#ff1f4b"/><rect x="7" y="-20" width="10" height="15" rx="5" fill="#ff1f4b"/><rect x="-16" y="18" width="32" height="20" rx="7" fill="#d8d2c4"/><path d="M-8 40 Q0 58 8 40Z" fill="#ff8a3d"/></svg>
+</div>
+<div id="toast"></div>
+
+<script>
+/* ===== CONFIG ===== */
+const LINKS = {
+  email:"vijayvishweshwar24@gmail.com",
+  linkedin:"https://www.linkedin.com/in/vijay-bhat-146859258",
+  github:"https://github.com/TARGOD",
+  resume:"Vijay_Bhat.pdf",
+  paper:"https://ieeexplore.ieee.org/document/11158918"
+};
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const clamp = (v,a,b) => Math.max(a,Math.min(b,v)), R = Math.random;
+const P = new URLSearchParams(location.search);
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const hexA = (h,a) => { const n = parseInt(h.slice(1),16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; };
+
+/* ===== sigil (SVG magic circle) ===== */
+let sigN = 0;
+function sigil(color="#ff1f4b", text="覚醒 · AGENTS · 召喚 · RETRIEVAL · 契約 · MCP · 鍛錬 · LoRA · 心眼 · CNN · 混沌 · "){
+  const id = "sp"+(sigN++), tri = r => [[0,-r],[r*.866,r*.5],[-r*.866,r*.5]], dtri = r => [[0,r],[r*.866,-r*.5],[-r*.866,-r*.5]];
+  const pts = a => a.map(p => p.join(",")).join(" ");
+  const ticks = Array.from({length:48},(_,i) => { const a = i/48*6.283, r1 = 92, r2 = i%4 ? 89 : 85; return `<line x1="${Math.cos(a)*r1}" y1="${Math.sin(a)*r1}" x2="${Math.cos(a)*r2}" y2="${Math.sin(a)*r2}"/>`; }).join("");
+  const nodes = tri(62).concat(dtri(62)).map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="5"/>`).join("");
+  return `<svg class="sg" viewBox="-100 -100 200 200" style="--sc:${color}">
+    <defs><path id="${id}" d="M -76,0 a 76,76 0 1,1 152,0 a 76,76 0 1,1 -152,0"/></defs>
+    <circle r="97" class="thick"/><circle r="93"/>
+    <g class="r1">${ticks}<text><textPath href="#${id}">${text}${text}</textPath></text></g>
+    <circle r="70"/>
+    <g class="r2"><polygon points="${pts(tri(62))}"/><polygon points="${pts(dtri(62))}"/>${nodes}</g>
+    <g class="r3"><circle r="34" class="thick"/><polygon points="${pts(tri(30))}"/><circle r="12"/></g>
+  </svg>`;
+}
+$("#gateSig").innerHTML = sigil(); $("#opSig").innerHTML = sigil(); $("#sumSig").innerHTML = sigil("#ff1f4b","召喚 · SUMMON · 召喚 · SUMMON · ");
+const MINI = `<svg viewBox="-50 -50 100 100"><circle r="46" fill="none" stroke="currentColor" stroke-width="3"/><polygon points="0,-34 29,17 -29,17" fill="none" stroke="currentColor" stroke-width="3"/><polygon points="0,34 29,-17 -29,-17" fill="none" stroke="currentColor" stroke-width="3"/><circle r="9" fill="currentColor"/></svg>`;
+$$(".sigl").forEach(s => s.innerHTML = MINI);
+
+/* ===== audio (synthesised, no files) ===== */
+const SFX = (() => {
+  let ac = null, on = false, master;
+  function init(){ if (ac) return; ac = new (window.AudioContext||window.webkitAudioContext)(); master = ac.createGain(); master.gain.value = .45; master.connect(ac.destination); }
+  function noise(d){ const b = ac.createBuffer(1, ac.sampleRate*d, ac.sampleRate), x = b.getChannelData(0); for (let i = 0; i < x.length; i++) x[i] = R()*2-1; const s = ac.createBufferSource(); s.buffer = b; return s; }
+  function env(node, t, a, peak, d){ const g = ac.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(peak,t+a); g.gain.exponentialRampToValueAtTime(.0001,t+d); node.connect(g); g.connect(master); return g; }
+  return {
+    set(v){ on = v; if (v){ init(); ac.resume(); } $("#sndBtn").textContent = on ? "SFX · ON" : "SFX · OFF"; }, get on(){ return on; },
+    impact(k=1){ if (!on) return; const t = ac.currentTime; const o = ac.createOscillator(); o.type = "sine"; o.frequency.setValueAtTime(150,t); o.frequency.exponentialRampToValueAtTime(36,t+.4); env(o,t,.005,.9*k,.6); o.start(t); o.stop(t+.65);
+      const n = noise(.3), f = ac.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = 1200; n.connect(f); env(f,t,.002,.5*k,.28); n.start(t); },
+    whoosh(){ if (!on) return; const t = ac.currentTime, n = noise(.7), f = ac.createBiquadFilter(); f.type = "bandpass"; f.Q.value = 2; f.frequency.setValueAtTime(300,t); f.frequency.exponentialRampToValueAtTime(3500,t+.5); n.connect(f); env(f,t,.15,.5,.65); n.start(t); },
+    chime(){ if (!on) return; const t = ac.currentTime; [880,1175,1568,2093].forEach((fq,i) => { const o = ac.createOscillator(); o.type = "triangle"; o.frequency.value = fq; env(o,t+i*.07,.005,.22,.9); o.start(t+i*.07); o.stop(t+i*.07+1); }); },
+    zap(){ if (!on) return; const t = ac.currentTime, o = ac.createOscillator(); o.type = "sawtooth"; o.frequency.setValueAtTime(220,t); o.frequency.exponentialRampToValueAtTime(1400,t+.12); const f = ac.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = 2400; o.connect(f); env(f,t,.005,.18,.2); o.start(t); o.stop(t+.22); },
+    blip(){ if (!on) return; const t = ac.currentTime, o = ac.createOscillator(); o.type = "square"; o.frequency.value = 660 + R()*220; env(o,t,.002,.05,.05); o.start(t); o.stop(t+.06); }
+  };
+})();
+$("#sndBtn").addEventListener("click", () => SFX.set(!SFX.on));
+
+/* ===== FX engine ===== */
+const FX = (() => {
+  const cv = $("#fx"), ctx = cv.getContext("2d"); let W = 0, H = 0, DPR = 1;
+  const PS = [], CS = [], WV = [], SP = [];
+  function resize(){ DPR = Math.min(innerWidth < 760 ? 1 : 2, devicePixelRatio||1); W = innerWidth; H = innerHeight; cv.width = W*DPR; cv.height = H*DPR; }
+  addEventListener("resize", resize); resize();
+  const spark = (x,y,vx,vy,col,life=1,size=2,drag=.9,g=0) => { if (PS.length < 1100) PS.push({x,y,vx,vy,col,life,max:life,size,drag,g}); };
+  function burst(x,y,col="#ff1f4b",n=40,sp=420){ for (let i = 0; i < n; i++){ const a = R()*6.283, v = sp*(.25+R()); spark(x,y,Math.cos(a)*v,Math.sin(a)*v,R()<.3?"#ffffff":col,.5+R()*.7,1+R()*2.5,.9,140); } }
+  const circle = (x,y,r,col="#ff1f4b",life=1.3) => CS.push({x,y,r,col,t:0,life,rot:R()*6});
+  const wave = (x,y,col="#ff1f4b",max=320) => WV.push({x,y,col,t:0,max});
+  const speed = (dur=.6,col="255,255,255",cx,cy) => SP.push({t:0,dur,col,cx:cx??W/2,cy:cy??H/2,seed:R()*1000});
+  const KJ = "覚醒召喚契約鍛錬心眼混沌起源昇格";
+  function drawCircle(c){
+    const p = c.t/c.life, e = 1-Math.pow(1-Math.min(1,p*2.4),3), a = p < .55 ? 1 : 1-(p-.55)/.45, r = c.r*(.35+.65*e);
+    ctx.save(); ctx.translate(c.x,c.y); ctx.globalAlpha = Math.max(0,a); ctx.strokeStyle = c.col; ctx.fillStyle = c.col; ctx.shadowColor = c.col; ctx.shadowBlur = 16; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(0,0,r,0,6.283); ctx.stroke(); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(0,0,r*.9,0,6.283); ctx.stroke();
+    ctx.rotate(c.rot + c.t*1.4);
+    for (let i = 0; i < 36; i++){ const an = i/36*6.283; ctx.beginPath(); ctx.moveTo(Math.cos(an)*r*.9,Math.sin(an)*r*.9); ctx.lineTo(Math.cos(an)*r*(i%3?.86:.8),Math.sin(an)*r*(i%3?.86:.8)); ctx.stroke(); }
+    ctx.font = `${Math.max(9,r*.11)}px "Dela Gothic One"`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    for (let i = 0; i < 12; i++){ ctx.save(); ctx.rotate(i/12*6.283); ctx.fillText(KJ[i%KJ.length], 0, -r*.74); ctx.restore(); }
+    ctx.rotate(-c.t*2.8); const tr = r*.6;
+    for (const s of [1,-1]){ ctx.beginPath(); for (let k = 0; k < 3; k++){ const an = -Math.PI/2*s + k*2.094; k ? ctx.lineTo(Math.cos(an)*tr,Math.sin(an)*tr) : ctx.moveTo(Math.cos(an)*tr,Math.sin(an)*tr); } ctx.closePath(); ctx.stroke(); }
+    ctx.beginPath(); ctx.arc(0,0,r*.3,0,6.283); ctx.stroke();
+    ctx.restore();
+  }
+  function frame(dt){
+    ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
+    ctx.globalCompositeOperation = "lighter";
+    for (let i = SP.length-1; i >= 0; i--){ const s = SP[i]; s.t += dt; if (s.t > s.dur){ SP.splice(i,1); continue; } const a = (1-s.t/s.dur)*.55;
+      ctx.strokeStyle = `rgba(${s.col},${a})`; ctx.lineWidth = 2; ctx.beginPath();
+      for (let k = 0; k < 90; k++){ const an = k/90*6.283 + Math.sin(s.seed+k*7.3)*.03, r0 = 120 + ((Math.sin(s.seed*k)+1)*.5)*240, r1 = Math.max(W,H); ctx.moveTo(s.cx+Math.cos(an)*r0, s.cy+Math.sin(an)*r0); ctx.lineTo(s.cx+Math.cos(an)*r1, s.cy+Math.sin(an)*r1); }
+      ctx.stroke(); }
+    for (let i = WV.length-1; i >= 0; i--){ const w = WV[i]; w.t += dt; const p = w.t/.7; if (p >= 1){ WV.splice(i,1); continue; }
+      ctx.strokeStyle = hexA(w.col, 1-p); ctx.lineWidth = 6*(1-p)+1; ctx.beginPath(); ctx.arc(w.x,w.y,w.max*(1-Math.pow(1-p,3)),0,6.283); ctx.stroke(); }
+    for (let i = CS.length-1; i >= 0; i--){ const c = CS[i]; c.t += dt; if (c.t >= c.life){ CS.splice(i,1); continue; } drawCircle(c); }
+    ctx.lineCap = "round";
+    for (let i = PS.length-1; i >= 0; i--){ const p = PS[i]; p.life -= dt; if (p.life <= 0){ PS.splice(i,1); continue; }
+      p.vx *= Math.pow(p.drag, dt*60); p.vy = p.vy*Math.pow(p.drag, dt*60) + p.g*dt; p.x += p.vx*dt; p.y += p.vy*dt;
+      const a = p.life/p.max; ctx.strokeStyle = hexA(p.col, a); ctx.lineWidth = p.size*a+.3; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p.x-p.vx*.035, p.y-p.vy*.035); ctx.stroke(); }
+    ctx.globalCompositeOperation = "source-over";
+    return ctx;
+  }
+  return { spark, burst, circle, wave, speed, frame, get W(){ return W; }, get H(){ return H; }, ctx };
+})();
+
+/* ===== DOM SFX, flash, shake, toast ===== */
+function pop(text, x, y, o={}){
+  const el = document.createElement("div"); el.className = "pop"; el.textContent = text;
+  el.style.left = x+"px"; el.style.top = y+"px"; el.style.fontSize = (o.size||70)+"px"; el.style.color = o.color||"#fff";
+  el.style.setProperty("--r", (o.rot ?? (R()-.5)*24)+"deg"); el.style.setProperty("--st", o.stroke||"#000"); el.style.setProperty("--gl", o.glow||"rgba(255,31,75,.8)"); el.style.setProperty("--d", (o.life||950)+"ms");
+  if (o.font) el.style.fontFamily = o.font;
+  $("#sfxLayer").appendChild(el); setTimeout(() => el.remove(), (o.life||950)+50);
+}
+function flash(ink=false, ms=130){ const f = $("#flash"); f.className = ink ? "ink" : ""; f.animate([{opacity:0},{opacity:ink?1:.9},{opacity:0}],{duration:ms,easing:"ease-out"}); }
+function shake(k=1){ if (REDUCED) return; const a = 10*k; $("#world").animate(Array.from({length:8},(_,i) => ({transform:`translate(${(R()-.5)*a*(1-i/8)}px,${(R()-.5)*a*(1-i/8)}px)`})).concat([{transform:"none"}]),{duration:380}); }
+let toastT; function toast(t){ const el = $("#toast"); el.textContent = t; el.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("on"), 2600); }
+const BOOMS = ["ドン!","バン!","ズドン!!","ゴゴゴ","ドドド","キラッ"];
+
+/* ===== cursor, wisps, charge-and-cast ===== */
+const M = {x:-999, y:-999, px:0, py:0, in:false, down:false, charge:0, fine:matchMedia("(pointer:fine)").matches};
+addEventListener("pointermove", e => { M.x = e.clientX; M.y = e.clientY; M.in = e.pointerType === "mouse";
+  const d = Math.hypot(M.x-M.px, M.y-M.py);
+  if (M.in && d > 4 && !REDUCED){ for (let i = 0; i < Math.min(3, d/12); i++) FX.spark(M.x+(R()-.5)*6, M.y+(R()-.5)*6, (M.x-M.px)*2+(R()-.5)*60, (M.y-M.py)*2+(R()-.5)*60-30, R()<.5?"#ff1f4b":"#ff2fa0", .5+R()*.5, 1+R()*2, .9, -40); }
+  M.px = M.x; M.py = M.y; });
+const interactive = el => el.closest("a,button,input,.pnl,.card,.summon,.sigl,#scene,#familiar,.hud,#gate");
+addEventListener("pointerdown", e => { if (interactive(e.target)) return; M.down = true; M.charge = 0; M.x = e.clientX; M.y = e.clientY; });
+addEventListener("pointerup", e => { if (!M.down) return; M.down = false; cast(e.clientX, e.clientY, M.charge); M.charge = 0; });
+addEventListener("pointercancel", () => { M.down = false; M.charge = 0; });
+function cast(x, y, c){
+  if (c < .18){ FX.circle(x,y,34,"#ff2fa0",.7); for (let i = 0; i < 10; i++) FX.burst(x,y,"#ff1f4b",1,200); SFX.blip(); return; }
+  const k = clamp(c/1.4, 0, 1);
+  FX.circle(x,y,70+k*190,"#ff1f4b",1.4); FX.wave(x,y,"#ff1f4b",180+k*420); if (k > .4) FX.wave(x,y,"#ffcf4a",120+k*300);
+  FX.burst(x,y,"#ff1f4b",30+k*140,300+k*500); pop(BOOMS[Math.min(BOOMS.length-1, Math.floor(k*4))], x, y-40, {size:50+k*80, color:k>.7?"#ffcf4a":"#fff"});
+  if (k > .45) shake(k*1.6); if (k > .85){ flash(); FX.speed(.5,"255,80,120",x,y); } SFX.impact(.4+k*.8);
+}
+
+/* ===== gate ===== */
+function awaken(sound){
+  SFX.set(sound); const cx = innerWidth/2, cy = innerHeight/2;
+  FX.speed(1,"255,255,255"); flash(true,160); setTimeout(() => flash(false,200), 140);
+  FX.circle(cx,cy,Math.min(cx,cy)*.9,"#ff1f4b",1.6); FX.wave(cx,cy,"#ff1f4b",Math.max(cx,cy)*1.4); FX.burst(cx,cy,"#ff1f4b",220,900);
+  pop("覚醒!!", cx, cy, {size:Math.min(220, innerWidth*.22), color:"#fff", life:1300}); SFX.impact(1.3); SFX.whoosh();
+  $("#gate").classList.add("break"); setTimeout(() => { $("#gate").remove(); document.body.classList.remove("locked"); document.body.classList.add("awake"); }, 780);
+  setTimeout(() => familiar.show("Hey! I'm UNIT-VB, Vijay's familiar. Hold anywhere and release to cast. Psst: 5 謎 are hidden here."), 6000);
+}
+$("#awaken").addEventListener("click", () => awaken(true));
+$("#awakenQuiet").addEventListener("click", () => awaken(false));
+if (P.has("skip") || REDUCED){ $("#gate").remove(); document.body.classList.remove("locked"); document.body.classList.add("awake"); }
+
+/* ===== section slams ===== */
+const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const el = e.target; io.unobserve(el); el.classList.add("in");
+  if (document.body.classList.contains("awake")){ const r = el.getBoundingClientRect(); pop(el.dataset.sfx || "ドン!", r.left + r.width*.75, r.top + 10, {size:56, color:"#ffcf4a"}); shake(.6); SFX.impact(.5); FX.speed(.35,"255,31,75",r.left+r.width/2,r.top+r.height/2); } }), {threshold:.6});
+$$(".slam").forEach(el => io.observe(el));
+
+/* ===== status window ===== */
+$$(".pips").forEach(p => { p.innerHTML = Array.from({length:+p.dataset.max}, () => "<i></i>").join(""); });
+const sio = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; sio.disconnect();
+  $$(".pips").forEach(p => [...p.children].forEach((i,k) => setTimeout(() => { if (k < +p.dataset.n){ i.classList.add("on"); SFX.blip(); } }, 300 + k*220)));
+  $$(".st .bar").forEach(b => setTimeout(() => b.querySelector("i").style.width = b.dataset.w + "%", 300));
+  $$(".st .v[data-to]").forEach(v => { const to = +v.dataset.to, suf = v.dataset.suf||""; let t0 = null; const step = ts => { t0 ??= ts; const p = clamp((ts-t0)/1300,0,1); v.textContent = Math.round(to*(1-Math.pow(1-p,3))) + suf; if (p < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); });
+}), {threshold:.4});
+sio.observe($("#sys"));
+
+/* ===== episodes ===== */
+const ICON = {
+  school:`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"><path d="M4 24 32 12l28 12-28 12z"/><path d="M16 30v14c8 6 24 6 32 0V30"/><path d="M58 25v16"/></svg>`,
+  server:`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4"><rect x="10" y="8" width="44" height="14"/><rect x="10" y="26" width="44" height="14"/><rect x="10" y="44" width="44" height="14"/><circle cx="18" cy="15" r="2" fill="currentColor"/><circle cx="18" cy="33" r="2" fill="currentColor"/><circle cx="18" cy="51" r="2" fill="currentColor"/></svg>`,
+  spark:`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"><path d="M8 12h30v18H20l-8 7v-7H8z"/><path d="M36 9l4 9 9 4-9 4-4 9-4-9-9-4 9-4z" transform="translate(10 18)"/></svg>`,
+  eye:`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4"><path d="M4 32c8-12 18-18 28-18s20 6 28 18c-8 12-18 18-28 18S12 44 4 32z"/><circle cx="32" cy="32" r="10"/><path d="M28 31c0-3 4-3 4 0 0-3 4-3 4 0 0 3-4 6-4 6s-4-3-4-6z" fill="currentColor"/></svg>`,
+  guild:`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"><path d="M32 4 56 14v18c0 14-10 24-24 28C18 56 8 46 8 32V14z"/><path d="M22 30l8 8 14-16"/></svg>`,
+  awaken:`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"><path d="M36 4 14 36h16l-4 24 24-34H34z"/></svg>`,
+  ascend:`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"><path d="M8 48l8-26 16 14 16-14 8 26z"/><path d="M8 56h48"/><path d="M14 38 32 24l18 14" /></svg>`,
+  next:`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"><path d="M22 22c0-6 4-10 10-10s10 4 10 10c0 8-10 9-10 17"/><circle cx="32" cy="52" r="2" fill="currentColor"/></svg>`
+};
+const NUM = "一二三四五六七八";
+const EPS = [
+  {k:"学", t:"The Student", sub:"Sai Vidya Institute of Technology · B.E. · CGPA 8.6", art:"school", c:"#cfd6e6", meta:"B.E. INFORMATION SCIENCE · BENGALURU · JULY 2025 · CGPA 8.6/10",
+   lines:[["NARRATOR","Bengaluru. An Information Science student at Sai Vidya Institute of Technology. Graduated July 2025 with a CGPA of 8.6/10."],["NARRATOR","Lectures by day. One question by night: how does a machine actually understand language?"],["VIJAY","If I want the answer… I'll have to build it myself."]]},
+  {k:"修行", t:"Side Quest", sub:"Code Origin · Backend Developer Intern", art:"server", c:"#ff6b8b", meta:"NOV 2023 – JAN 2024 · REST APIs · RELATIONAL DATABASES",
+   lines:[["NARRATOR","Side quest unlocked: Code Origin. Backend Developer Intern, Nov 2023 – Jan 2024."],["NARRATOR","REST APIs. Relational databases. Server-side business logic and data handling for real web applications."],["UNIT-VB","Achievement unlocked: 201 Created."]]},
+  {k:"火花", t:"The Spark", sub:"GPT → his own small language model → many fine-tunes", art:"spark", c:"#ff2fa0", meta:"THE AI JOURNEY BEGINS",
+   lines:[["NARRATOR","The spark didn't come from a lecture. It came from a conversation."],["VIJAY","GPT… how do you actually work?"],["NARRATOR","Hundreds of questions later, he built a small language model of his own."],["NARRATOR","Then he fine-tuned another. And another. And many more."]]},
+  {k:"論文", t:"The Paper", sub:"IEEE · ICCTDC 2025 · Cardiovascular Risk Prediction System Using Retinal Images", art:"eye", c:"#45d4ff", big:true, meta:"ICCTDC 2025 · HASSAN, INDIA · IEEE XPLORE · DOI 10.1109/ICCTDC64446.2025.11158918",
+   lines:[["NARRATOR","Final year. A party of five. One question: can the eye reveal the heart?"],["NARRATOR","A CNN-based binary classifier that reads blood-vessel structures and anomalies in retinal images to predict cardiovascular risk, behind a web GUI for clinicians."],["NARRATOR","Presented at ICCTDC 2025 in Hassan. Published on IEEE Xplore. Reported accuracy: 95%."],["仲間 · PARTY","Anisha Gazi · Sanjana Gopal Hegde · Vijay Vishveshwar Bhat · Vineetha Maiya U · Priya Arundhati"]],
+   end:[["Read on IEEE Xplore ↗", LINKS.paper]]},
+  {k:"入団", t:"The Guild", sub:"Colligence Research · AI Engineer Intern · Feb 2025", art:"guild", c:"#ffcf4a", meta:"FEB 2025 · A COMPOUND AI STARTUP · BENGALURU",
+   lines:[["NARRATOR","February 2025. He joins a guild: Colligence Research, a compound AI startup that builds intelligence for business."],["NARRATOR","Rank: AI Engineer Intern. First real quests: agents, MCP tools and RAG, all on real business systems."],["UNIT-VB","That's where we met. He gave me tools. I gave him traces."]]},
+  {k:"覚醒", t:"Awakening", sub:"Converted to full-time AI Engineer", art:"awaken", c:"#ff1f4b", big:true, meta:"GOOGLE ADK · LANGGRAPH · LANGCHAIN · RAG · MCP · TALLY · LANGSMITH",
+   lines:[["NARRATOR","The internship ends. The conversion begins."],["NARRATOR","Full-time AI Engineer. Agents on Google ADK, LangGraph and LangChain. RAG pipelines that stay grounded. MCP + Tally to validate the books."],["VIJAY","Every step traced in LangSmith. No mysteries in production."]]},
+  {k:"昇格", t:"Ascension", sub:"Promoted to AI Product Engineer", art:"ascend", c:"#ffcf4a", meta:"COLLIGENCE RESEARCH · RECENTLY",
+   lines:[["NARRATOR","And then, recently… a promotion."],["NARRATOR","AI Product Engineer: from building agents to shaping the AI products they live in."],["UNIT-VB","LEVEL UP! New title acquired: 『AI Product Engineer』."]]},
+  {k:"次回", t:"Next Episode", sub:"A new problem. A new team. Yours?", art:"next", c:"#7a0dff", big:true, meta:"次回予告 · TO BE CONTINUED",
+   lines:[["NARRATOR","Next episode…"],["NARRATOR","A new problem. A new team. Maybe… yours?"],["VIJAY","Let's build the next one."]],
+   end:[["✉ Email Vijay", "mailto:"+LINKS.email],["Summon him ↓", "#finale"]]}
+];
+$("#page").innerHTML = EPS.map((e,i) => `<button class="pnl ${e.big?"big":""}" data-i="${i}" style="grid-area:e${i+1};--c:${e.c}">
+  <span class="pspeed"></span><span class="ph"></span><span class="pk" style="--ks:${[1,1,.56,.4][e.k.length]}">${e.k}</span><span class="pn">第${NUM[i]}話</span><span class="pic">${ICON[e.art]}</span>
+  <span class="go">ENTER!</span><span class="cap"><b>${e.t}</b><small>${e.sub}</small></span></button>`).join("");
+$$(".pnl").forEach(p => p.addEventListener("click", () => Scene.open(+p.dataset.i, p)));
+
+/* ===== scene: step inside a panel ===== */
+const Scene = (() => {
+  const el = $("#scene"), cv = $("#sceneCv"), ctx = cv.getContext("2d");
+  let W = 0, H = 0, DPR = 1, raf = 0, last = 0, T = 0, cur = null, from = null, st = {};
+  const O = {x:0, y:0};   // canvas offset on screen (the canvas is shifted on phones)
+  const FXo = { spark:(x,y,...a) => FX.spark(x+O.x, y+O.y, ...a), burst:(x,y,...a) => FX.burst(x+O.x, y+O.y, ...a), wave:(x,y,...a) => FX.wave(x+O.x, y+O.y, ...a), circle:(x,y,...a) => FX.circle(x+O.x, y+O.y, ...a) };
+  function size(){ DPR = Math.min(innerWidth < 760 ? 1.25 : 2, devicePixelRatio||1); W = cv.clientWidth || innerWidth; H = cv.clientHeight || innerHeight; cv.width = W*DPR; cv.height = H*DPR; const r = cv.getBoundingClientRect(); O.x = r.left; O.y = r.top; }
+  function open(i, fromEl, special){
+    cur = special || EPS[i]; from = fromEl || null; const r = fromEl ? fromEl.getBoundingClientRect() : {top:innerHeight/2,left:innerWidth/2,right:innerWidth/2,bottom:innerHeight/2};
+    el.style.setProperty("--sc", cur.c); el.style.transition = "none";
+    el.style.clipPath = `inset(${r.top}px ${innerWidth-r.right}px ${innerHeight-r.bottom}px ${r.left}px)`;
+    el.classList.add("open"); document.body.classList.add("locked"); size();
+    void el.offsetWidth; el.style.transition = "clip-path .6s cubic-bezier(.7,0,.2,1)"; el.style.clipPath = "inset(0px 0px 0px 0px)";
+    $("#scEp").textContent = special ? "第零話" : `第${NUM[i]}話`;
+    $("#scTitle").className = "sc-title"; $("#scTitle").innerHTML = `<div class="sc-k">${cur.k}</div><h2>${cur.t}</h2><div class="sc-meta">${cur.meta||""}</div>`;
+    setTimeout(() => $("#scTitle").classList.add("in"), 250);
+    renderPage(); st = {}; T = 0; el.scrollTop = 0;
+    SFX.whoosh(); setTimeout(() => { FX.speed(.45,"255,255,255"); SFX.impact(.6); pop(cur.k, innerWidth*.72, innerHeight*.3, {size:110, color:"#fff", glow:cur.c}); }, 420);
+    cancelAnimationFrame(raf); last = performance.now(); const loop = now => { const dt = Math.min(.05,(now-last)/1000); last = now; T += dt; draw(dt); raf = requestAnimationFrame(loop); }; raf = requestAnimationFrame(loop);
+    if (!special && fromEl) fromEl.classList.add("seen");
+  }
+  function close(){
+    if (!el.classList.contains("open")) return;
+    const r = from ? from.getBoundingClientRect() : null;
+    el.style.clipPath = r ? `inset(${r.top}px ${innerWidth-r.right}px ${innerHeight-r.bottom}px ${r.left}px)` : "inset(50% 50% 50% 50%)";
+    setTimeout(() => { el.classList.remove("open"); cancelAnimationFrame(raf); document.body.classList.remove("locked"); }, 560);
+  }
+  function renderPage(){
+    const idx = EPS.indexOf(cur), ls = cur.lines;
+    $("#strip").className = "strip" + (ls.length % 2 ? " odd" : "");
+    $("#strip").innerHTML = ls.map(([who, text], k) => who === "NARRATOR"
+      ? `<div class="mp nar"><i>${k ? "NARRATION" : "ナレーション · NARRATION"}</i><p>${text}</p></div>`
+      : who.includes("PARTY")
+      ? `<div class="mp party"><i>仲間 · THE PARTY</i><p>${text.split(" · ").map(n => `<span class="${n.includes("Vijay") ? "me" : ""}">${n}</span>`).join("")}</p></div>`
+      : `<div class="mp say"><div class="bub">${text}</div><span class="who">${who}</span></div>`).join("");
+    const acts = (cur.end||[]).map(([t,h]) => `<a class="sa" href="${h}" ${h.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>${t}</a>`);
+    if (idx >= 0 && idx < EPS.length-1) acts.push(`<button class="sa" data-ep="${idx+1}">第${NUM[idx+1]}話 ▶ ${EPS[idx+1].t}</button>`);
+    if (idx > 0) acts.push(`<button class="sa alt" data-ep="${idx-1}">◀ 第${NUM[idx-1]}話</button>`);
+    acts.push(`<button class="sa alt" data-close>✕ 戻る · back</button>`);
+    $("#scActs").innerHTML = acts.join("");
+    const L = $("#scLeft"); L.classList.remove("in"); void L.offsetWidth; setTimeout(() => L.classList.add("in"), 260);
+  }
+  function step(d){ const idx = EPS.indexOf(cur); if (idx < 0) return; const n = idx + d; if (n < 0 || n >= EPS.length) return; open(n, $$(".pnl")[n]); }
+  el.addEventListener("click", e => {
+    const b = e.target.closest("[data-ep]"); if (b){ const n = +b.dataset.ep; open(n, $$(".pnl")[n]); return; }
+    if (e.target.closest("[data-close]")){ close(); return; }
+    const a = e.target.closest("a.sa"); if (a && a.getAttribute("href").startsWith("#")) close();
+  });
+  $("#scClose").addEventListener("click", close);
+  addEventListener("keydown", e => { if (!el.classList.contains("open")) return; if (e.key === "Escape") close(); else if (e.key === "ArrowRight") step(1); else if (e.key === "ArrowLeft") step(-1); });
+  addEventListener("resize", () => { if (el.classList.contains("open")) size(); });
+
+  /* ---------- art ---------- */
+  const ART = {};
+  const bg = (a,b) => { const g = ctx.createRadialGradient(W*.68,H*.42,0,W*.68,H*.42,Math.max(W,H)*.8); g.addColorStop(0,a); g.addColorStop(1,b); ctx.fillStyle = g; ctx.fillRect(0,0,W,H); };
+  const lines_ = (cx,cy,col,a,n=120) => { ctx.strokeStyle = hexA(col,a); ctx.lineWidth = 1.5; ctx.beginPath(); for (let k = 0; k < n; k++){ const an = k/n*6.283 + T*.05, r0 = Math.min(W,H)*.32 + Math.sin(k*13.7+T*3)*40; ctx.moveTo(cx+Math.cos(an)*r0, cy+Math.sin(an)*r0); ctx.lineTo(cx+Math.cos(an)*W, cy+Math.sin(an)*W); } ctx.stroke(); };
+  const bigK = (t,x,y,s,col,a) => { ctx.font = `${s}px "Dela Gothic One"`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillStyle = hexA(col,a); ctx.fillText(t,x,y); };
+  const tone = () => { ctx.fillStyle = "rgba(255,255,255,.035)"; for (let y = 0; y < H; y += 10) for (let x = (y/10)%2*5; x < W; x += 10) ctx.fillRect(x,y,1.3,1.3); };
+  ART.school = dt => { bg("#1a2030","#05060a"); tone(); lines_(W*.7,H*.42,"#cfd6e6",.05);
+    st.f ??= Array.from({length:40}, () => ({x:R()*W, y:R()*H, v:10+R()*30, t:["SELECT * FROM","O(n log n)","TCP/IP","∑ xᵢ","if (curious)","def learn():","ER diagram","OSI","malloc()","git commit","∂L/∂w","while(true)"][Math.floor(R()*12)], a:.1+R()*.25}));
+    ctx.font = '14px "JetBrains Mono"'; ctx.textAlign = "left"; st.f.forEach(f => { f.y -= f.v*dt; if (f.y < -20){ f.y = H+20; f.x = R()*W; } ctx.fillStyle = `rgba(207,214,230,${f.a})`; ctx.fillText(f.t, f.x, f.y); });
+    bigK("学", W*.7, H*.42, Math.min(W,H)*.5, "#cfd6e6", .12 + Math.sin(T*2)*.03); };
+  ART.server = dt => { bg("#2a0a14","#05060a"); tone();
+    const cols = 3, rw = Math.min(150, W*.1), gap = rw*.4, x0 = W*.62 - (cols*rw + (cols-1)*gap)/2, y0 = H*.2;
+    st.leds ??= Array.from({length:cols*10}, () => R());
+    for (let c = 0; c < cols; c++) for (let u = 0; u < 10; u++){ const x = x0 + c*(rw+gap), y = y0 + u*H*.055, i = c*10+u;
+      ctx.fillStyle = "#14090d"; ctx.fillRect(x,y,rw,H*.045); ctx.strokeStyle = "rgba(255,107,139,.4)"; ctx.strokeRect(x,y,rw,H*.045);
+      if (R() < .04) st.leds[i] = R(); ctx.fillStyle = st.leds[i] > .5 ? "#5fe3a1" : st.leds[i] > .2 ? "#ffb454" : "#331"; ctx.beginPath(); ctx.arc(x+12, y+H*.0225, 3, 0, 6.283); ctx.fill(); }
+    st.p ??= []; if (R() < dt*1.2) st.p.push({x:x0 + R()*(cols*rw+(cols-1)*gap), y:y0+H*.55, t:0, s:["201 Created","200 OK","POST /api","JOIN ✓"][Math.floor(R()*4)]});
+    ctx.font = '600 16px "JetBrains Mono"'; ctx.textAlign = "center"; st.p = st.p.filter(p => (p.t += dt) < 2); st.p.forEach(p => { ctx.fillStyle = `rgba(95,227,161,${1-p.t/2})`; ctx.fillText(p.s, p.x, p.y - p.t*60); });
+    bigK("修行", W*.62, H*.82, Math.min(W,H)*.16, "#ff6b8b", .25); };
+  ART.spark = dt => { bg("#2a0a24","#05050a"); tone(); lines_(W*.68,H*.44,"#ff2fa0",.06);
+    st.rain ??= Array.from({length:70}, () => ({x:R()*W, y:R()*H, v:60+R()*160, c:"agentstokensattentionlossembeddingsGPTSLMfinetunenexttoken"[Math.floor(R()*56)]}));
+    ctx.font = '16px "JetBrains Mono"'; ctx.textAlign = "center"; st.rain.forEach(r => { r.y += r.v*dt; if (r.y > H){ r.y = -10; r.x = R()*W; } ctx.fillStyle = "rgba(255,47,160,.28)"; ctx.fillText(r.c, r.x, r.y); });
+    st.b ??= []; st.bt = (st.bt||0) - dt;
+    if (st.bt <= 0){ st.bt = 1.1; const Q = ["how do LMs work?","what is attention?","predict the next token","train it yourself","loss went down!","fine-tune it again"]; st.b.push({t:0, s:Q[(st.bi = ((st.bi??-1)+1)%Q.length)], side:st.bi%2}); }
+    ctx.font = '700 17px "Zen Kaku Gothic New"'; st.b = st.b.filter(b => (b.t += dt) < 5);
+    st.b.forEach(b => { const x = W*(b.side ? .78 : .56), y = H*.78 - b.t*H*.13, w = ctx.measureText(b.s).width+32, a = Math.min(1, b.t*3, (5-b.t)/1.5);
+      ctx.fillStyle = b.side ? hexA("#ff2fa0",.85*a) : `rgba(255,255,255,${.92*a})`; ctx.beginPath(); ctx.roundRect(x-w/2, y-20, w, 40, 14); ctx.fill();
+      ctx.fillStyle = b.side ? `rgba(255,255,255,${a})` : `rgba(0,0,0,${a})`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(b.s, x, y); });
+    const pulse = (T % 2.2) < .15; if (pulse && !st.pp){ FXo.burst(W*.67, H*.3, "#ff2fa0", 30, 300); st.pp = 1; } if (!pulse) st.pp = 0;
+    bigK("火花", W*.67, H*.3, Math.min(W,H)*.14, "#ff2fa0", .5); };
+  ART.eye = dt => { bg("#062033","#030508"); tone();
+    const r = Math.min(H*.3, W*.17), ex = W*.7, ey = H*.4;
+    if (!st.v){ st.v = []; let sd = 9; const rr = () => (sd = (sd*16807)%2147483647)/2147483647;
+      const br = (x,y,a,l,w,d) => { if (d > 6 || w < .4) return; const s = []; let cx = x, cy = y, ca = a; for (let i = 0; i < 8; i++){ ca += (rr()-.5)*.5; cx += Math.cos(ca)*l/8; cy += Math.sin(ca)*l/8; s.push([cx,cy]); } st.v.push({x,y,s,w,d}); br(cx,cy,ca+.45+rr()*.3,l*.72,w*.7,d+1); if (rr() > .25) br(cx,cy,ca-.45-rr()*.3,l*.68,w*.65,d+1); };
+      [-.9,-2.3,.9,2.3].forEach(a => br(.18,0,a,.62,3.2,0)); }
+    const beat = Math.pow(Math.max(0, Math.sin(T*6.2)), 12);
+    const g = ctx.createRadialGradient(ex-r*.2,ey-r*.1,r*.1,ex,ey,r); g.addColorStop(0,"#e06a2c"); g.addColorStop(.6,"#a3301b"); g.addColorStop(1,"#2a0808");
+    ctx.save(); ctx.shadowColor = "#ff1f4b"; ctx.shadowBlur = 40+beat*60; ctx.fillStyle = g; ctx.beginPath(); ctx.arc(ex,ey,r,0,6.283); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.beginPath(); ctx.arc(ex,ey,r,0,6.283); ctx.clip(); const dx = ex + r*.18; ctx.lineCap = "round";
+    st.v.forEach(v => { ctx.strokeStyle = `rgba(${90+beat*120},10,20,.9)`; ctx.lineWidth = v.w*r/90; ctx.beginPath(); ctx.moveTo(dx+(v.x-.18)*r, ey+v.y*r); v.s.forEach(q => ctx.lineTo(dx+(q[0]-.18)*r, ey+q[1]*r)); ctx.stroke(); });
+    const dg = ctx.createRadialGradient(dx,ey,0,dx,ey,r*.18); dg.addColorStop(0,"#fff3c4"); dg.addColorStop(1,"rgba(242,180,90,0)"); ctx.fillStyle = dg; ctx.beginPath(); ctx.arc(dx,ey,r*.18,0,6.283); ctx.fill(); ctx.restore();
+    ctx.strokeStyle = "rgba(69,212,255,.5)"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(ex,ey,r+14+beat*6,0,6.283); ctx.stroke();
+    // ECG
+    const y0 = H*.74, w = W*.5, x0 = W*.45; ctx.strokeStyle = "#45d4ff"; ctx.lineWidth = 2.5; ctx.shadowColor = "#45d4ff"; ctx.shadowBlur = 10; ctx.beginPath();
+    for (let k = 0; k <= 200; k++){ const u = k/200, ph = (u*3 - T*.9) % 1, p = ph < 0 ? ph+1 : ph; let y = 0; if (p > .4 && p < .44) y = -10; else if (p > .46 && p < .48) y = 40; else if (p > .48 && p < .52) y = -70; else if (p > .52 && p < .55) y = 25;
+      const X = x0 + u*w; k ? ctx.lineTo(X, y0+y) : ctx.moveTo(X, y0+y); } ctx.stroke(); ctx.shadowBlur = 0;
+    ctx.font = '72px "Dela Gothic One"'; ctx.textAlign = "right"; ctx.fillStyle = "#45d4ff"; ctx.fillText("95%", W*.95, H*.62); ctx.font = '12px "JetBrains Mono"'; ctx.fillStyle = "rgba(255,255,255,.6)"; ctx.fillText("ACCURACY REPORTED · IEEE", W*.95, H*.66); };
+  ART.guild = dt => { bg("#2a1e05","#050403"); tone(); lines_(W*.68,H*.42,"#ffcf4a",.05);
+    const cx = W*.68, cy = H*.42, r = Math.min(W,H)*.22; ctx.save(); ctx.translate(cx,cy); ctx.rotate(T*.15);
+    ctx.strokeStyle = "#ffcf4a"; ctx.shadowColor = "#ffcf4a"; ctx.shadowBlur = 20; ctx.lineWidth = 3; ctx.beginPath(); for (let k = 0; k < 6; k++){ const a = k/6*6.283; k ? ctx.lineTo(Math.cos(a)*r, Math.sin(a)*r) : ctx.moveTo(Math.cos(a)*r, Math.sin(a)*r); } ctx.closePath(); ctx.stroke();
+    ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(0,0,r*1.22,0,6.283); ctx.stroke();
+    const ring = "COMPOUND AI · AGENTS · MCP · RAG · EVALS · MEMORY · "; ctx.font = `600 ${r*.075}px "JetBrains Mono"`; ctx.fillStyle = "#ffcf4a"; ctx.textAlign = "center";
+    [...ring].forEach((ch,i) => { ctx.save(); ctx.rotate(i/ring.length*6.283); ctx.fillText(ch, 0, -r*1.1); ctx.restore(); }); ctx.restore(); ctx.shadowBlur = 0;
+    bigK("入団", cx, cy, r*.62, "#ffcf4a", .9); ctx.font = '600 14px "JetBrains Mono"'; ctx.fillStyle = "rgba(255,207,74,.8)"; ctx.fillText("COLLIGENCE RESEARCH · FEB 2025", cx, cy + r*1.45);
+    for (let k = 0; k < 5; k++){ const a = T*.8 + k*1.256; FXo.spark(cx+Math.cos(a)*r*1.4, cy+Math.sin(a)*r*1.4, 0, -20, "#ffcf4a", .4, 1.5, .95, 0); } };
+  ART.awaken = dt => { bg("#3a0010","#030004"); tone();
+    const cx = W*.68; const gr = ctx.createLinearGradient(cx-80,0,cx+80,0); gr.addColorStop(0,"rgba(255,31,75,0)"); gr.addColorStop(.5,`rgba(255,${80+Math.sin(T*20)*40},120,.55)`); gr.addColorStop(1,"rgba(255,31,75,0)");
+    ctx.fillStyle = gr; ctx.fillRect(cx-80,0,160,H);
+    for (let k = 0; k < 6; k++){ const a = R()*6.283, d = 200+R()*300; FXo.spark(cx+Math.cos(a)*d, H*.45+Math.sin(a)*d, -Math.cos(a)*d*2.2, -Math.sin(a)*d*2.2, R()<.5?"#ff1f4b":"#ff2fa0", .45, 2, .96, 0); }
+    if ((T % 1.6) < dt){ FXo.wave(cx, H*.45, "#ff1f4b", Math.min(W,H)*.5); SFX.impact(.35); }
+    bigK("覚醒", cx + (R()-.5)*4, H*.45 + (R()-.5)*4, Math.min(W,H)*.26, "#ffffff", .92);
+    ctx.font = `${Math.min(W,H)*.05}px "Dela Gothic One"`; ctx.fillStyle = "#ff1f4b"; ctx.fillText("AI ENGINEER", cx, H*.45 + Math.min(W,H)*.2); };
+  ART.ascend = dt => { bg("#2a2205","#050403");
+    ctx.save(); ctx.translate(W*.68, H*1.05); for (let k = 0; k < 18; k++){ ctx.rotate(6.283/18 + Math.sin(T*.3)*.002); ctx.fillStyle = `rgba(255,207,74,${.05+.04*Math.sin(T*2+k)})`; ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(-40,-H*1.4); ctx.lineTo(40,-H*1.4); ctx.closePath(); ctx.fill(); } ctx.restore(); tone();
+    const cx = W*.68, cy = H*.4; for (let k = 0; k < 3; k++){ const on = (T*1.2 % 3.6) > k*1.2; ctx.strokeStyle = on ? "#ffcf4a" : "rgba(255,207,74,.2)"; ctx.lineWidth = 10; ctx.shadowColor = "#ffcf4a"; ctx.shadowBlur = on ? 24 : 0;
+      const y = cy + 90 - k*46; ctx.beginPath(); ctx.moveTo(cx-90, y+34); ctx.lineTo(cx, y); ctx.lineTo(cx+90, y+34); ctx.stroke(); } ctx.shadowBlur = 0;
+    bigK("昇格", cx, cy - 90, Math.min(W,H)*.16, "#ffcf4a", .95); ctx.font = `${Math.min(W,H)*.04}px "Dela Gothic One"`; ctx.fillStyle = "#fff"; ctx.fillText("AI PRODUCT ENGINEER", cx, cy + 190);
+    if (R() < .5) FXo.spark(cx + (R()-.5)*W*.5, H, 0, -200-R()*200, "#ffcf4a", 1.4, 1.5, .99, 0); };
+  ART.next = dt => { bg("#14052e","#030208"); tone(); lines_(W*.68,H*.42,"#7a0dff",.07);
+    if (!st.pts){ const oc = document.createElement("canvas"); oc.width = 300; oc.height = 300; const o = oc.getContext("2d"); o.font = '260px "Dela Gothic One"'; o.textAlign = "center"; o.textBaseline = "middle"; o.fillStyle = "#fff"; o.fillText("?",150,160);
+      const d = o.getImageData(0,0,300,300).data; st.pts = []; for (let y = 0; y < 300; y += 6) for (let x = 0; x < 300; x += 6) if (d[(y*300+x)*4+3] > 128) st.pts.push({tx:x, ty:y, x:R()*W, y:R()*H}); }
+    const s = Math.min(W,H)*.0023, ox = W*.68 - 150*s, oy = H*.42 - 150*s;
+    st.pts.forEach((p,i) => { const tx = ox + p.tx*s + Math.sin(T*2+i)*3, ty = oy + p.ty*s + Math.cos(T*2+i)*3; p.x += (tx-p.x)*dt*3; p.y += (ty-p.y)*dt*3;
+      const mx = M.x-O.x, my = M.y-O.y, dm = Math.hypot(p.x-mx, p.y-my); if (dm < 90 && dm > 0){ p.x += (p.x-mx)/dm*20; p.y += (p.y-my)/dm*20; }
+      ctx.fillStyle = i%3 ? "#b48cff" : "#ff2fa0"; ctx.fillRect(p.x, p.y, 3, 3); });
+    ctx.font = '13px "JetBrains Mono"'; ctx.textAlign = "center"; ctx.fillStyle = "rgba(255,255,255,.5)"; ctx.fillText("move your cursor through the question", W*.68, H*.42 + 190*s); };
+  ART.true = dt => { bg("#40000f","#000"); lines_(W*.68,H*.4,"#ff1f4b",.12,160);
+    for (let k = 0; k < 10; k++){ const a = R()*6.283, d = Math.max(W,H)*.6; FXo.spark(W*.68+Math.cos(a)*d, H*.4+Math.sin(a)*d, -Math.cos(a)*900, -Math.sin(a)*900, R()<.5?"#ff1f4b":"#ffcf4a", .7, 2.5, .97, 0); }
+    if ((T % 2) < dt){ FXo.circle(W*.68, H*.4, Math.min(W,H)*.35, "#ff1f4b", 1.8); }
+    const words = ["THE","REAL","POWER","WAS","CURIOSITY"], n = clamp(Math.floor(T/0.7), 0, 5);
+    ctx.font = `100px "Dela Gothic One"`; const fs = Math.min(84, 100 * W*.56 / ctx.measureText(words.join(" ")).width);
+    ctx.font = `${fs}px "Dela Gothic One"`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillStyle = "#fff"; ctx.shadowColor = "#ff1f4b"; ctx.shadowBlur = 30;
+    ctx.fillText(words.slice(0,n).join(" "), W*.68, H*.6); ctx.shadowBlur = 0; };
+
+  function draw(dt){
+    ctx.setTransform(DPR,0,0,DPR,0,0); (ART[cur.art] || ART.school)(dt);
+  }
+  return { open, close, get isOpen(){ return el.classList.contains("open"); } };
+})();
+
+/* ===== powers ===== */
+const POW = [
+  {k:"召喚", n:"Agent Summoning", el:"AGENTS", c:"#ffb454", d:"Summons multi-agent workflows that plan multi-step tasks, route work to specialised tools and keep state.", src:"Colligence · Agent Orchestration", tags:"Google ADK · LangGraph · LangChain · multi-agent"},
+  {k:"千里眼", n:"Retrieval Sight", el:"RETRIEVAL", c:"#59d0ff", d:"Finds the answer inside a mountain of documents, and grounds every word in a source.", src:"Colligence Research", tags:"RAG · embeddings · vector retrieval"},
+  {k:"契約", n:"Tool Pact", el:"INTEGRATION", c:"#5fe3a1", d:"Binds LLMs to real business systems, with controlled tool execution.", src:"Colligence · ERP project", tags:"MCP · enterprise APIs · tool calling"},
+  {k:"帳簿", n:"Ledger Oracle", el:"FINANCE", c:"#ffcf4a", d:"Reads the books through Tally's XML interface and validates every report.", src:"ERP Audit Assistant", tags:"Tally XML · Trial Balance · P&L · Ledger"},
+  {k:"心眼", n:"Heart's Eye", el:"VISION", c:"#ff1f4b", d:"Looks into the retina and predicts the heart's risk. 95% reported accuracy.", src:"IEEE · ICCTDC 2025", tags:"CNN · DenseNet121 · retinal images"},
+  {k:"鍛錬", n:"Model Reforging", el:"MODELS", c:"#b48cff", d:"Reforges a pretrained model for a domain, then tests it on real cases.", src:"Domain LLM project", tags:"PEFT/LoRA · PyTorch · Hugging Face"},
+  {k:"起源", n:"Genesis Spark", el:"ORIGIN", c:"#ff2fa0", d:"The first spell: talking to GPT until a language model of his own existed.", src:"College · the spark", tags:"GPT · small LM · fine-tuning"},
+  {k:"見切り", n:"Trace Vision", el:"OBSERVABILITY", c:"#cfd6e6", d:"Sees every step an agent takes, and exactly where it failed.", src:"Colligence · LangSmith", tags:"LangSmith · tracing · workflow evals"},
+  {k:"鉄壁", n:"Iron Backend", el:"ENGINEERING", c:"#ff6b8b", d:"APIs and databases that don't fall over when the agents get busy.", src:"Code Origin → today", tags:"Python · FastAPI · REST · PostgreSQL · Docker"}
+];
+$("#cards").innerHTML = POW.map((p,i) => `<div class="card" data-i="${i}" style="--c:${p.c}" tabindex="0" role="button" aria-label="Cast ${p.n}"><div class="card-in"><div class="foil"></div>
+  <div class="ck" style="--ks:${[1,1,.7,.5][p.k.length]}">${p.k}</div><div class="cno">No.${String(i+1).padStart(2,"0")} · ${p.k}</div><span class="cast">CAST!</span>
+  <h3>${p.n}</h3><div class="cel">ELEMENT · ${p.el}</div><p>${p.d}</p><div class="csrc"><span>learned at</span><b>${p.src}</b></div><div class="csrc"><span>${p.tags}</span></div></div></div>`).join("");
+const casted = new Set();
+$$(".card").forEach(c => {
+  c.addEventListener("pointermove", e => { const r = c.getBoundingClientRect(), x = (e.clientX-r.left)/r.width, y = (e.clientY-r.top)/r.height;
+    c.style.setProperty("--ry", ((x-.5)*18)+"deg"); c.style.setProperty("--rx", ((.5-y)*14)+"deg"); c.style.setProperty("--mx", x*100+"%"); c.style.setProperty("--my", y*100+"%"); });
+  c.addEventListener("pointerleave", () => { c.style.setProperty("--rx","0deg"); c.style.setProperty("--ry","0deg"); });
+  const go = () => { const p = POW[+c.dataset.i], r = c.getBoundingClientRect(), x = r.left+r.width/2, y = r.top+r.height/2;
+    c.classList.remove("casting"); void c.offsetWidth; c.classList.add("casting");
+    FX.circle(x,y,Math.min(r.width,r.height)*.75,p.c,1.4); FX.wave(x,y,p.c,420); FX.burst(x,y,p.c,120,700); FX.speed(.4,"255,255,255",x,y);
+    pop(p.n.toUpperCase()+"!", x, y-r.height*.55, {size:Math.min(64, innerWidth*.06), font:"Bangers", color:p.c, stroke:"#000", glow:p.c});
+    pop(p.k, x, y, {size:120, color:"#fff", glow:p.c, life:800}); shake(1.2); SFX.impact(.9); SFX.zap();
+    casted.add(+c.dataset.i); $("#castlog").innerHTML = `spells cast: <b>${casted.size}</b> / 9 ${casted.size === 9 ? "· <b>全能力解放 · ALL ABILITIES UNLOCKED</b>" : ""}`;
+    if (casted.size === 9 && !casted.done){ casted.done = 1; setTimeout(() => { toast("全能力解放 · all 9 abilities cast!"); flash(); FX.speed(.8); }, 700); } };
+  c.addEventListener("click", go); c.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); go(); } });
+});
+
+/* ===== mysteries 謎 ===== */
+const FRAG = ["THE","REAL","POWER","WAS","CURIOSITY"]; let found = 0;
+$$(".sigl").forEach(s => s.addEventListener("click", e => { e.stopPropagation(); if (s.classList.contains("found")) return;
+  s.classList.add("found"); found++; const r = s.getBoundingClientRect(), x = r.left+r.width/2, y = r.top+r.height/2;
+  FX.circle(x,y,90,"#ffcf4a",1.3); FX.burst(x,y,"#ffcf4a",80,500); pop(FRAG[+s.dataset.m], x, y-50, {size:54, color:"#ffcf4a"}); SFX.chime(); SFX.impact(.5);
+  $("#mystN").textContent = found; $("#mystBtn").classList.add("pulse"); setTimeout(() => $("#mystBtn").classList.remove("pulse"), 2500);
+  toast(`謎 ${found}/5 · fragment: “${FRAG[+s.dataset.m]}”`);
+  if (found === 5) setTimeout(openTrue, 1400); }));
+function openTrue(){ Scene.open(-1, null, {k:"真", t:"The True Origin", art:"true", c:"#ff1f4b", meta:"SECRET EPISODE · 第零話 · UNLOCKED BY FINDING ALL 5 謎",
+  lines:[["NARRATOR","第零話 · The True Origin."],["NARRATOR","Before the agents. Before the paper. Before the promotions."],["NARRATOR","There was a student who kept asking one question: how does this actually work?"],["UNIT-VB","The real power was curiosity. Hire that."]],
+  end:[["✉ Email Vijay", "mailto:"+LINKS.email]]}); }
+$("#mystBtn").addEventListener("click", () => toast(found === 5 ? "All 謎 found. You've seen the true origin." : `謎 ${found}/5 · they glow when you get close. Move slowly…`));
+function sigilGlow(){ $$(".sigl:not(.found)").forEach(s => { const r = s.getBoundingClientRect(), d = Math.hypot(r.left+r.width/2-M.x, r.top+r.height/2-M.y), k = clamp(1-d/170, 0, 1);
+  s.style.opacity = (.05 + k*.95).toFixed(2); s.style.transform = `scale(${1+k*.4}) rotate(${k*90}deg)`; s.style.filter = k > .1 ? `drop-shadow(0 0 ${k*16}px #ffcf4a)` : ""; }); }
+
+/* ===== familiar (random encounters) ===== */
+const familiar = (() => {
+  const el = $("#familiar"); let hideT, n = 0;
+  const HINTS = () => [`謎 are hidden in plain sight. They glow when your cursor gets close. (${found}/5)`, "Hold anywhere, then release. Longer hold, bigger spell.", "Every episode panel is a door. Click one and step inside.", "The cards aren't decoration. Cast all nine.", "Some say there's an old code: ↑ ↑ ↓ ↓ ← → ← → B A", "Want the plain version? 通常モード is in the top right."];
+  function show(t){ $("#famText").innerHTML = `<b>UNIT-VB · 使い魔</b>${t}`; el.classList.add("on"); clearTimeout(hideT); hideT = setTimeout(() => el.classList.remove("on"), 7000); }
+  el.addEventListener("click", () => { el.classList.remove("spin"); void el.offsetWidth; el.classList.add("spin"); const h = HINTS(); show(h[(n++) % h.length]); SFX.blip(); });
+  function loop(){ if (document.body.classList.contains("awake") && !Scene.isOpen){ const h = HINTS(); show(h[(n++) % h.length]); } setTimeout(loop, 32000 + R()*16000); }
+  setTimeout(loop, 26000);
+  return { show };
+})();
+
+/* ===== summon (hold) ===== */
+(() => {
+  const s = $("#summon"), ring = $("#sumRing"); let hold = false, p = 0, done = false;
+  const start = e => { if (done) return; e.preventDefault(); hold = true; SFX.zap(); };
+  const end = () => { hold = false; };
+  s.addEventListener("pointerdown", start); addEventListener("pointerup", end); s.addEventListener("pointerleave", end);
+  s.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); hold = true; } }); s.addEventListener("keyup", end);
+  window.summonTick = dt => {
+    if (done) return;
+    p = clamp(p + (hold ? dt/1.4 : -dt*1.2), 0, 1); ring.style.strokeDashoffset = 704*(1-p);
+    const r = s.getBoundingClientRect(), cx = r.left+r.width/2, cy = r.top+r.height/2;
+    if (hold) for (let k = 0; k < 4; k++){ const a = R()*6.283, d = 160+R()*120; FX.spark(cx+Math.cos(a)*d, cy+Math.sin(a)*d, -Math.cos(a)*d*3, -Math.sin(a)*d*3, R()<.5?"#ff1f4b":"#ffcf4a", .3, 2, .97, 0); }
+    if (p >= 1){ done = true; s.classList.add("done");
+      FX.circle(cx,cy,Math.min(innerWidth,innerHeight)*.45,"#ff1f4b",2); FX.wave(cx,cy,"#ffcf4a",900); FX.wave(cx,cy,"#ff1f4b",700); FX.burst(cx,cy,"#ff1f4b",300,1100); FX.speed(1);
+      flash(true,180); setTimeout(() => flash(false,220), 160); shake(2.4); SFX.impact(1.4); SFX.chime();
+      pop("召喚!!", cx, cy, {size:Math.min(200, innerWidth*.2), color:"#fff", life:1400});
+      setTimeout(() => { $("#contact").classList.add("open"); pop("VIJAY BHAT", cx, cy-160, {size:60, font:"Bangers", color:"#ffcf4a", life:1600}); }, 450); }
+  };
+})();
+["#cMail","#plainMail"].forEach(s => $(s).href = "mailto:"+LINKS.email); $("#cMailT").textContent = LINKS.email; $("#plainMail").textContent = LINKS.email;
+$("#cLi").href = LINKS.linkedin; $("#cGh").href = LINKS.github; $("#cPaper").href = LINKS.paper; $("#cCv").href = LINKS.resume;
+
+/* ===== konami → chaos overdrive ===== */
+const KON = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"]; let kp = 0, od = 0;
+addEventListener("keydown", e => { kp = e.key === KON[kp] ? kp+1 : (e.key === KON[0] ? 1 : 0); if (kp === KON.length){ kp = 0; overdrive(); } });
+function overdrive(){ document.body.classList.add("overdrive"); od = 4; pop("混沌!!", innerWidth/2, innerHeight/2, {size:Math.min(260, innerWidth*.25), life:1500}); SFX.impact(1.5); flash(true,200); toast("CHAOS OVERDRIVE · 混沌エンジン全開");
+  setTimeout(() => document.body.classList.remove("overdrive"), 4000); }
+
+/* ===== main loop ===== */
+let last = performance.now(), T = 0;
+function frame(now){
+  const dt = Math.min(.05, (now-last)/1000); last = now; T += dt;
+  if (M.down){ M.charge = Math.min(1.6, M.charge + dt);
+    if (M.charge > .15) for (let k = 0; k < 2 + M.charge*4; k++){ const a = R()*6.283, d = 60 + R()*90*M.charge; FX.spark(M.x+Math.cos(a)*d, M.y+Math.sin(a)*d, -Math.cos(a)*d*3, -Math.sin(a)*d*3, R()<.5?"#ff1f4b":"#ff2fa0", .3, 1.5, .96, 0); } }
+  if (od > 0){ od -= dt; for (let k = 0; k < 14; k++){ const x = R()*innerWidth; FX.spark(x, innerHeight+10, (R()-.5)*200, -600-R()*700, R()<.5?"#ff1f4b":"#ffcf4a", 1.2, 2.5, .99, 0); } if (R() < .1) FX.circle(R()*innerWidth, R()*innerHeight, 60+R()*160, "#ff1f4b", 1); }
+  // ambient embers in the opening
+  const op = $("#op").getBoundingClientRect(); if (op.bottom > 0 && R() < .5) FX.spark(R()*innerWidth, Math.min(innerHeight, op.bottom)+5, (R()-.5)*20, -40-R()*90, R()<.7?"#ff1f4b":"#ffcf4a", 3+R()*2, 1+R()*1.5, .995, 0);
+  window.summonTick && window.summonTick(dt);
+  sigilGlow();
+  const ctx = FX.frame(dt);
+  // cursor reticle
+  if (M.fine && M.in){ ctx.save(); ctx.translate(M.x, M.y); ctx.rotate(T*2); ctx.strokeStyle = "#ff1f4b"; ctx.shadowColor = "#ff1f4b"; ctx.shadowBlur = 10; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc(0,0,11,0,6.283); ctx.stroke(); for (let k = 0; k < 3; k++){ ctx.rotate(2.094); ctx.beginPath(); ctx.moveTo(0,-15); ctx.lineTo(0,-20); ctx.stroke(); }
+    if (M.down && M.charge > .15){ ctx.rotate(-T*4); ctx.strokeStyle = "#ffcf4a"; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(0,0,22+M.charge*26,0,6.283*Math.min(1,M.charge/1.4)); ctx.stroke(); }
+    ctx.restore(); ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(M.x, M.y, 2, 0, 6.283); ctx.fill(); }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+if (P.has("ep")) setTimeout(() => { const i = +P.get("ep"); Scene.open(i, $$(".pnl")[i]); }, 300);
+if (P.has("true")) setTimeout(openTrue, 300);
+</script>
+</body>
+</html>
